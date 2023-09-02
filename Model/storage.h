@@ -21,14 +21,16 @@ using std::vector;
 
 class storage: public Model{
 private:
-    contenitore<aula*> aule;
+    contenitore<aula*> aule_concerto;
+    contenitore<aula*> aule_studio;
+    contenitore<aula*> aule_strumentali;
     contenitore<prenotazione*> prenotazioni;
     vector<utente*> pers;
     QJsonDocument* jsonDocument;
 
 public:
     explicit storage();
-    explicit storage(contenitore<aula*>& , contenitore<prenotazione*>& , vector<utente*>& );//costr
+    explicit storage(contenitore<aula*>& , contenitore<aula*>& , contenitore<aula*>& , contenitore<prenotazione*>& , vector<utente*>& );//costr
     explicit storage(QJsonDocument*);
     virtual ~storage();//distr
 

@@ -2,18 +2,53 @@
 #include "contenitore.h"
 
 storage::storage(){
-    aule=contenitore<aula*>();
+    aule_concerto=contenitore<aula*>();
+    aule_studio=contenitore<aula*>();
+    aule_strumentali=contenitore<aula*>();
     prenotazioni=contenitore<prenotazione*>();
 }
 
-storage::storage(QJsonDocument* document): aule(contenitore<aula*>()), prenotazioni(contenitore<prenotazione*>()){
+storage::storage(QJsonDocument* document): aule_concerto(contenitore<aula*>()), aule_studio(contenitore<aula*>()), aule_strumentali(contenitore<aula*>()), prenotazioni(contenitore<prenotazione*>()){
     QJsonObject JObject = document->object();
 
-    /*QJsonArray JArray_aule = JObject["aule"].toArray();
-    for (auto i: JArray_aule){
-        aula* a= new aula();
+    QJsonArray JArray_aC = JObject["aule"].toArray();
+    QJsonValue type = object.value("type");
+
+    if (type.toString().compare("aula_concerto") == 0){
+        for (auto i: JArray_aC){
+            aulaConcerto* au= new aulaConcerto(i.toObject().value("Piano").toInt(),
+                                                i.toObject().value("Numero").toInt(),
+                                    i.toObject().value("Sede").toString().toStdString(),
+                                    i.toObject().value("Persone").toInt(),
+                                    i.toObject().value("Nome").toString().toStdString(),
+                                    i.toObject().value("Strumento").toString().toStdString(),
+                                    i.toObject().value("Capienza").toInt(),
+                                    i.toObject().value("Amplificazione").toBool());
+            aule_concerto.push(au);
+        }
     }
-*/
+    else if (type.toString().compare("aula_studio") == 0){
+        for (auto i: JArray_aS){
+            aulaStudio* au= new aulaStudio(i.toObject().value("Piano").toInt(),
+                                                i.toObject().value("Numero").toInt(),
+                                                i.toObject().value("Sede").toString().toStdString(),
+                                                i.toObject().value("Persone").toInt(),
+                                                i.toObject().value("Leggii").toInt(),
+                                                i.toObject().value("Prese").toInt());
+            aule_studio.push(au);
+        }
+    }
+    else if (type.toString().compare("aula_strumentale") == 0){
+        for (auto i: JArray_aStr){
+            aulaStrumentale* au= new aulaStrumentale(i.toObject().value("Piano").toInt(),
+                                                i.toObject().value("Numero").toInt(),
+                                                i.toObject().value("Sede").toString().toStdString(),
+                                                i.toObject().value("Persone").toInt(),
+                                                i.toObject().value("Strumento").toString().toStdString());
+            aule_strumentali.push(au);
+        }
+    }
+
 
     QJsonArray JArray_pren = JObject["prenotazioni"].toArray();
     for (auto i: JArray_pren){
@@ -41,7 +76,7 @@ storage::storage(QJsonDocument* document): aule(contenitore<aula*>()), prenotazi
 }
 
 const contenitore<aula*>& storage::getContAula() const{
-    return aule;
+    return aule_concerto;
 }
 const contenitore<prenotazione*>& storage::getContPren() const{
     return prenotazioni;
