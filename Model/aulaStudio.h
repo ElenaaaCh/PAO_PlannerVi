@@ -2,7 +2,6 @@
 #define AULASTUDIO_H
 
 #include "aula.h"
-#include "AulaVisitor.h"
 
 class aulaStudio : public aula {
 private:
@@ -18,7 +17,6 @@ public:
     void setLeggii(const int value);
     void setPrese(const int value);
 
-    void accept(AulaVisitor& visitor) const override;
 };
 
 #endif

@@ -14,6 +14,9 @@
 #include "prenotazione.h"
 #include "utente.h"
 #include "model.h"
+#include "aulaConcerto.h"
+#include "aulaStrumentale.h"
+#include "aulaStudio.h"
 
 using std::string;
 using std::vector;
@@ -27,19 +30,23 @@ private:
     contenitore<prenotazione*> prenotazioni;
     vector<utente*> pers;
     QJsonDocument* jsonDocument;
-
+    string filepath;
 public:
     explicit storage();
     explicit storage(contenitore<aula*>& , contenitore<aula*>& , contenitore<aula*>& , contenitore<prenotazione*>& , vector<utente*>& );//costr
-    explicit storage(QJsonDocument*);
+    explicit storage(QJsonDocument*,string& );
     virtual ~storage();//distr
 
     const contenitore<aula*>& getContAula() const;
     const contenitore<prenotazione*>& getContPren() const;
     const vector<utente*>& getUtente() const;
 
-    void addAula(aula* aula);
-    void removeAula(aula* aula);
+    void addAula_Strumentale(aulaStrumentale*);
+    void addAula_Studio(aulaStudio*);
+    void addAula_Concerto(aulaConcerto*);
+    void removeAulaConcerto(aulaConcerto* );
+    void removeAulaStudio(aulaStudio*);
+    void removeAulaStrumentale(aulaStrumentale*);
     aula* searchAula(const int piano, const int numero);
 
     void addPrenotazione(prenotazione* pr);

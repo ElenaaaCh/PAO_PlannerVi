@@ -7,7 +7,3 @@ aulaStrumentale::aulaStrumentale(int _piano, int _numero, string _sede, int _max
 const string& aulaStrumentale::getStrumento() const { return strumento; }
 
 void aulaStrumentale::setStrumento(const string &value){ strumento=value; }
-
-void aulaStrumentale::accept(AulaVisitor& visitor) const {
-    visitor.visit(*this);
-}

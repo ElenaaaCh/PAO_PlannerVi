@@ -10,8 +10,8 @@
 #include "Controller/menu_controller.h"
 #include "Controller/profilo_controller.h"
 #include "Controller/prenotazioni_controller.h"
-
-
+#include "View/aulastudio_view.h")
+#include "View/aula_view.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -20,19 +20,20 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
 
-    QString filename=salvataggio_dati::JsonSelect();
+   // QString filename=salvataggio_dati::JsonSelect();
 
-    QJsonDocument* document = salvataggio_dati::getFileJson(filename);
-    if (document->isNull()){
-        QMessageBox::warning(nullptr,"ERRORE","Errore File Json",QMessageBox::Yes);
-        QApplication::quit();
-        return 0;
-    }
-    storage* st=new storage(document);
+   // QJsonDocument* document = salvataggio_dati::getFileJson(filename);
+    //if (document->isNull()){
+    //    QMessageBox::warning(nullptr,"ERRORE","Errore File Json",QMessageBox::Yes);
+    //    QApplication::quit();
+    //    return 0;
+  //  }
 
-    login_view* login = new login_view(QSize(500,300),nullptr);
-    LoginController* log_controller= new LoginController (st, login);
-    log_controller->show();
+    //storage* st=new storage(document);
+
+   // login_view* login = new login_view(QSize(500,300),nullptr);
+  //  LoginController* log_controller= new LoginController (st, login);
+  //  log_controller->show();
 
     /*
     admin_view* aW = new admin_view (QSize(900,600),nullptr);

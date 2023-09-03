@@ -2,7 +2,6 @@
 #define AULASTRUMENTALE_H
 
 #include "aula.h"
-#include "AulaVisitor.h"
 
 class aulaStrumentale : public aula {
 private:
@@ -14,8 +13,6 @@ public:
     const string& getStrumento() const;
 
     void setStrumento(const string &value);
-
-    void accept(AulaVisitor& visitor) const override;
 
 };
 

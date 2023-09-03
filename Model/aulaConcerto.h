@@ -2,7 +2,7 @@
 #define AULACONCERTO_H
 
 #include "aula.h"
-#include "AulaVisitor.h"
+
 
 class aulaConcerto : public aula {
 private:
@@ -26,8 +26,6 @@ public:
     void setCapienza(const int value);
     void setAmplificazione(bool value);
 
-    //visitor
-    void accept(AulaVisitor& visitor) const override;
 };
 
 #endif

@@ -6,15 +6,14 @@ storage::storage(){
     aule_studio=contenitore<aula*>();
     aule_strumentali=contenitore<aula*>();
     prenotazioni=contenitore<prenotazione*>();
+    pers=std::vector<utente*>();
 }
 
-storage::storage(QJsonDocument* document): aule_concerto(contenitore<aula*>()), aule_studio(contenitore<aula*>()), aule_strumentali(contenitore<aula*>()), prenotazioni(contenitore<prenotazione*>()){
+storage::storage(QJsonDocument* document, string& path ): aule_concerto(contenitore<aula*>()), aule_studio(contenitore<aula*>()), aule_strumentali(contenitore<aula*>()), prenotazioni(contenitore<prenotazione*>()), pers(std::vector<utente*>()){
+    filepath=path;
     QJsonObject JObject = document->object();
 
-    QJsonArray JArray_aC = JObject["aule"].toArray();
-    QJsonValue type = object.value("type");
-
-    if (type.toString().compare("aula_concerto") == 0){
+    QJsonArray JArray_aC = JObject["aule_concerto"].toArray();
         for (auto i: JArray_aC){
             aulaConcerto* au= new aulaConcerto(i.toObject().value("Piano").toInt(),
                                                 i.toObject().value("Numero").toInt(),
@@ -26,8 +25,7 @@ storage::storage(QJsonDocument* document): aule_concerto(contenitore<aula*>()), 
                                     i.toObject().value("Amplificazione").toBool());
             aule_concerto.push(au);
         }
-    }
-    else if (type.toString().compare("aula_studio") == 0){
+        QJsonArray JArray_aS = JObject["aule_studio"].toArray();
         for (auto i: JArray_aS){
             aulaStudio* au= new aulaStudio(i.toObject().value("Piano").toInt(),
                                                 i.toObject().value("Numero").toInt(),
@@ -37,8 +35,7 @@ storage::storage(QJsonDocument* document): aule_concerto(contenitore<aula*>()), 
                                                 i.toObject().value("Prese").toInt());
             aule_studio.push(au);
         }
-    }
-    else if (type.toString().compare("aula_strumentale") == 0){
+        QJsonArray JArray_aStr = JObject["aule_strumentale"].toArray();
         for (auto i: JArray_aStr){
             aulaStrumentale* au= new aulaStrumentale(i.toObject().value("Piano").toInt(),
                                                 i.toObject().value("Numero").toInt(),
@@ -47,9 +44,6 @@ storage::storage(QJsonDocument* document): aule_concerto(contenitore<aula*>()), 
                                                 i.toObject().value("Strumento").toString().toStdString());
             aule_strumentali.push(au);
         }
-    }
-
-
     QJsonArray JArray_pren = JObject["prenotazioni"].toArray();
     for (auto i: JArray_pren){
 
@@ -75,9 +69,9 @@ storage::storage(QJsonDocument* document): aule_concerto(contenitore<aula*>()), 
     }
 }
 
-const contenitore<aula*>& storage::getContAula() const{
-    return aule_concerto;
-}
+//const contenitore<aula*>& storage::getContAula() const{
+  ///  return aule_concerto;
+//}
 const contenitore<prenotazione*>& storage::getContPren() const{
     return prenotazioni;
 }
@@ -85,28 +79,19 @@ const vector<utente*>& storage::getUtente() const{
     return pers;
 }
 
-storage::storage(contenitore<aula*>& aule_iniziali, contenitore<prenotazione*>& prenotazioni_iniziali, vector<utente*>& utenti_iniziali) {
-    // Aggiungi le aule iniziali al contenitore delle aule
-    for (auto aula : aule_iniziali) {
-        aule.push(aula);
-    }
-
-    // Aggiungi le prenotazioni iniziali al contenitore delle prenotazioni
-    for (auto prenotazione : prenotazioni_iniziali) {
-        prenotazioni.push(prenotazione);
-    }
-
-    // Assegna il vettore degli utenti iniziali
-    pers = utenti_iniziali;
-}
 
 
 storage::~storage() {
     // Dealloca le aule nel contenitore delle aule
-    for (auto aula : aule) {
-        delete aula;
+    for (auto aula1 : aule_concerto) {
+        delete aula1;
     }
-
+    for (auto aula2 : aule_studio) {
+        delete aula2;
+    }
+    for(auto aula3: aule_strumentali){
+        delete aula3;
+    }
     // Dealloca le prenotazioni nel contenitore delle prenotazioni
     for (auto prenotazione : prenotazioni) {
         delete prenotazione;
@@ -119,8 +104,8 @@ storage::~storage() {
     saveJsonData();
 }
 
-void storage::addAula(aula* a) {
-    aule.insertSorted(a, [](const aula* a1, const aula* a2) {
+void storage::addAula_Strumentale(aulaStrumentale* a) {
+    aule_strumentali.insertSorted(a, [](const aula* a1, const aula* a2) {
         if (a1->getPiano() < a2->getPiano()) {
             return true;
         } else if (a1->getPiano() == a2->getPiano()) {
@@ -130,11 +115,37 @@ void storage::addAula(aula* a) {
         }
     });
 }
-
-void storage::removeAula(aula* aulaToRemove) {
-    aule.remove(aulaToRemove);
+void storage::addAula_Studio(aulaStudio* a){
+    aule_studio.insertSorted(a, [](const aula* a1, const aula* a2) {
+        if (a1->getPiano() < a2->getPiano()) {
+            return true;
+        } else if (a1->getPiano() == a2->getPiano()) {
+            return a1->getNumero() < a2->getNumero();
+        } else {
+            return false;
+        }
+    });
 }
-
+void storage::addAula_Concerto(aulaConcerto* a){
+    aule_concerto.insertSorted(a, [](const aula* a1, const aula* a2) {
+        if (a1->getPiano() < a2->getPiano()) {
+            return true;
+        } else if (a1->getPiano() == a2->getPiano()) {
+            return a1->getNumero() < a2->getNumero();
+        } else {
+            return false;
+        }
+    });
+}
+void storage::removeAulaStrumentale(aulaStrumentale* aulaToRemove) {
+    aule_strumentali.remove(aulaToRemove);
+}
+void storage::removeAulaStudio(aulaStudio* aulaToRemove) {
+    aule_studio.remove(aulaToRemove);
+}
+void storage::removeAulaConcerto(aulaConcerto* aulaToRemove) {
+    aule_concerto.remove(aulaToRemove);
+}
 void storage::addPrenotazione(prenotazione* pr) {
     prenotazioni.insertSorted(pr, [](const prenotazione* a, const prenotazione* b) {
         return a->getData() < b->getData() && a->getAula() < b->getAula() && a->getOraArrivo() < b->getOraArrivo();

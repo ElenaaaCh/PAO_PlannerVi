@@ -26,11 +26,7 @@ void LoginController::Login_enter(const string& em, const string& pass) const {
                 //CONTROLLO SUL UTENTE VS ADMIN PER LA VISUALIZZAZIONE DELLA RELATIVA SCHEDA
                 if(it->getEmail()=="admin"){
                     admin_view* aW = new admin_view(QSize(900,400), view);
-                    ConcreteAulaVisitor concreteVisitor;  // Crea un'istanza del visitatore concreto
-                    // Itera attraverso le aule e crea le righe
-                    for (const aula& a : getModel()->getAule()) {
-                        aW->renderAula(a, concreteVisitor);
-                    }
+
 
                     AdminController* aC = new AdminController(getModel() , aW , const_cast<LoginController*>(this));
                     aC->show();

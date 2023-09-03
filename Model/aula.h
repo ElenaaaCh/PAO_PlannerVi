@@ -1,7 +1,6 @@
 #ifndef AULA_H
 #define AULA_H
 
-#include "AulaVisitor.h"
 #include <string>
 using std::string;
 
@@ -15,7 +14,6 @@ private:
 public:
     aula(int _piano=0, int numero=0, string _sede="", int _max_persone=0);
     virtual ~aula();
-    virtual aula* clone() const = 0;
 
     //metodi get
     int getPiano() const;
@@ -29,8 +27,6 @@ public:
     void setSede(const string &value);
     void setMaxPersone(int value);
 
-    //visitor
-    virtual void accept(AulaVisitor& visitor) const = 0;
 
 };
 

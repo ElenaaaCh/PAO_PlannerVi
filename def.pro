@@ -25,7 +25,6 @@ SOURCES += \
     Controller/profilo_controller.cpp \
     Controller/registrazione_controller.cpp \
     Controller/salvataggio_dati.cpp \
-    Model/ConcreteAulaVisitor.cpp \
     Model/aula.cpp \
     Model/aulaConcerto.cpp \
     Model/aulaStrumentale.cpp \
@@ -35,7 +34,8 @@ SOURCES += \
     Model/storage.cpp \
     Model/utente.cpp \
     View/admin_view.cpp \
-    View/lista_aule.cpp \
+    View/aula_view.cpp \
+    View/aulastudio_view.cpp \
     View/login_view.cpp \
     View/menu_view.cpp \
     View/mypren_view.cpp \
@@ -55,7 +55,6 @@ HEADERS += \
     Controller/profilo_controller.h \
     Controller/registrazione_controller.h \
     Controller/salvataggio_dati.h \
-    Model/ConcreteAulaVisitor.h \
     Model/aula.h \
     Model/aulaConcerto.h \
     Model/aulaStrumentale.h \
@@ -65,9 +64,9 @@ HEADERS += \
     Model/prenotazione.h \
     Model/storage.h \
     Model/utente.h \
-    Model/AulaVisitor.h \
     View/admin_view.h \
-    View/lista_aule.h \
+    View/aula_view.h \
+    View/aulastudio_view.h \
     View/login_view.h \
     View/menu_view.h \
     View/mypren_view.h \

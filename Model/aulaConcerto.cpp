@@ -16,7 +16,3 @@ void aulaConcerto::setStrumento(const string &value){ strumento=value; }
 void aulaConcerto::setCapienza(const int value){ capienza=value; }
 void aulaConcerto::setAmplificazione(bool value){ amplificazione=value; }
 
-//visitor
-void aulaConcerto::accept(AulaVisitor& visitor) const {
-    visitor.visit(*this);
-}

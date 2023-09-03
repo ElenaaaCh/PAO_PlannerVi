@@ -4,7 +4,7 @@
 #include "view.h"
 #include "Model/storage.h"
 #include "WidgetLookup.h"
-
+#include "View/aulastudio_view.h"
 #include <QObject>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -12,6 +12,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include <QScrollArea>
+#include <QTableWidget>
 
 /*
 #include <QTextEdit>
@@ -23,24 +24,25 @@
 class admin_view: public View {
     Q_OBJECT
 private:
+    aulaStudio_view * studio;
+    QGridLayout* mainLayout;
+    QTableWidget* ConcertoTable;
+    QTableWidget* StudioTable;
+    QTableWidget* StrumTable;
+    QPushButton* saveButton;
 
-    QVBoxLayout* vbox;
-    QHBoxLayout* hbox;
-    QScrollArea* scrollArea;
+    //void connectViewSignals() const override;
 
 protected:
     explicit admin_view();
 
 public:
     explicit admin_view(const QSize& s, View *parent = nullptr);
-    void createAulaRow(const aula& a);
+    //void createAulaRow(const aula& a);
+    //void setViewTitle (const QString &title) override;
     void closeEvent(QCloseEvent *event) override;
-
-public slots:
-
-
-
 signals:
+    void viewClosed() const; //close_signal to controller
 
 };
 

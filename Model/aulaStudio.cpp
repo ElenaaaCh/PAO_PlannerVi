@@ -11,6 +11,3 @@ int aulaStudio::getPreseCorrente() const { return prese_corrente; }
 void aulaStudio::setLeggii(const int value){ leggii=value; }
 void aulaStudio::setPrese(const int value){ prese_corrente=value;}
 
-void aulaStudio::accept(AulaVisitor& visitor) const {
-    visitor.visit(*this);
-}
