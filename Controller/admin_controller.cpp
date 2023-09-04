@@ -2,9 +2,9 @@
 
 AdminController::AdminController(){}
 
-AdminController::AdminController(storage* s, admin_view * a, Controller* c) : Controller(s, a, c){
+AdminController::AdminController(storage* s, admin_view * a, Aula_View* aw, Controller* c) : Controller(s, a, c){
     view->setTitolo("VISUALIZZAZIONE ADMIN");
-
+    connect(aw,SIGNAL(prova_signal()),this,SLOT(prova()));
     /*
     getView()->create_table({"Numero Aula","Data","Ora Arrivo", "Ora Uscita", "Causale", "Email utente","Rimuovi","Aggiungi"});
     getView()->visualizza_prenotazioni(s->getContPren());
@@ -13,6 +13,11 @@ AdminController::AdminController(storage* s, admin_view * a, Controller* c) : Co
     connect(view,SIGNAL(aggiugi_signal(const int, const QDate, const QTime, const QTime, const QString, const QString)),this,SLOT(aggiungi_enter(const int, const QDate, const QTime, const QTime, const QString, const QString)));
 */
 }
+
+void AdminController::prova() const {
+    qDebug()<<"segnale prova";
+}
+
 storage* AdminController::getModel()const {
     return static_cast<storage*>(mod);
 }

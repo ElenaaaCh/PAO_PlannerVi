@@ -35,6 +35,8 @@ SOURCES += \
     Model/utente.cpp \
     View/admin_view.cpp \
     View/aula_view.cpp \
+    View/aulaconcerto_view.cpp \
+    View/aulastrumentale_view.cpp \
     View/aulastudio_view.cpp \
     View/login_view.cpp \
     View/menu_view.cpp \
@@ -66,6 +68,8 @@ HEADERS += \
     Model/utente.h \
     View/admin_view.h \
     View/aula_view.h \
+    View/aulaconcerto_view.h \
+    View/aulastrumentale_view.h \
     View/aulastudio_view.h \
     View/login_view.h \
     View/menu_view.h \

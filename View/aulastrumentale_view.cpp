@@ -1,13 +1,14 @@
-#include "aulastudio_view.h"
+#include "aulastrumentale_view.h"
 
-aulaStudio_view::aulaStudio_view(const QSize& s, View* parent) : Aula_View(s,parent), table(new QTableWidget(this)){
+aulaStrumentale_view::aulaStrumentale_view(const QSize& s, View* parent) : Aula_View(s,parent), table(new QTableWidget(this)){
     resize(QSize(400,500));
     vbox=new QVBoxLayout(this);
 }
 
-void aulaStudio_view::createTable(const QStringList& headers){
+
+void aulaStrumentale_view::createTable(const QStringList& headers){
     table->setRowCount(0);
-    table->setColumnCount(6);
+    table->setColumnCount(5);
     table->setHorizontalHeaderLabels(headers);
     table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -15,11 +16,11 @@ void aulaStudio_view::createTable(const QStringList& headers){
     table->setColumnWidth(4,25);
     vbox->addWidget(table);
 }
-void aulaStudio_view::carica_view(const contenitore<aula*>& au){
+void aulaStrumentale_view::carica_view(const contenitore<aula*>& au){
     int i=0;
     for(auto j: au){
         table->insertRow(i);
-        aulaStudio* as= static_cast<aulaStudio*>(j);
+        aulaStrumentale* as= static_cast<aulaStrumentale*>(j);
         QLabel* pianoLabel = new QLabel(QString::number(as->getPiano()), this);
         table->setCellWidget(i, 0, pianoLabel);
         QLabel* numeroLabel = new QLabel(QString::number(as->getNumero()), this);
@@ -28,10 +29,8 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
         table->setCellWidget(i, 2, sedeLabel);
         QLabel* persLabel = new QLabel(QString::number(as->getMaxPersone()), this);
         table->setCellWidget(i, 3, persLabel);
-        QLabel* leggiiLabel = new QLabel(QString::number(as->getLeggii()), this);
-        table->setCellWidget(i, 4, leggiiLabel);
-        QLabel* preseLabel = new QLabel(QString::number(as->getPreseCorrente()), this);
-        table->setCellWidget(i, 5, preseLabel);
+        QLabel* strumentoLabel = new QLabel(QString::fromStdString(as->getStrumento()), this);
+        table->setCellWidget(i, 4, strumentoLabel);
 
         i++;
     }
@@ -55,46 +54,39 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
     _pers->setValidator(validator);
     table->setCellWidget(i,3,_pers);
 
-    _leggii = new QLineEdit(this);
-    validator = new QRegularExpressionValidator(QRegularExpression("[0-9]+"), _leggii);
-    _leggii->setValidator(validator);
-    table->setCellWidget(i,4,_leggii);
-
-    _prese = new QLineEdit(this);
-    validator = new QRegularExpressionValidator(QRegularExpression("[0-9]+"), _prese);
-    _prese->setValidator(validator);
-    table->setCellWidget(i,5,_prese);
+    _strumento = new QTextEdit(this);
+    table->setCellWidget(i,4,_strumento);
 
     aggiungi = new QPushButton ("+", this);
-    table->setCellWidget(i,6,aggiungi);
+    table->setCellWidget(i,5,aggiungi);
     table->resizeColumnsToContents();
 
     // Connessione del pulsante
     connect(aggiungi, SIGNAL(clicked()), this, SIGNAL (ButtonClicked()));
     connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_pren()));
 }
-void aulaStudio_view::addToView(aula* b) {
-    aulaStudio* a= static_cast<aulaStudio*>(b);
+void aulaStrumentale_view::addToView(aula* b) {
+    aulaStrumentale* a= static_cast<aulaStrumentale*>(b);
     table->insertRow(table->rowCount()-1);
     table->setCellWidget(table->rowCount()-2,0,new QLabel(QString::number(a->getPiano()),this));
     table->setCellWidget(table->rowCount()-2,1,new QLabel(QString::number(a->getNumero()),this));
     table->setCellWidget(table->rowCount()-2,2,new QLabel(QString::fromStdString(a->getSede()),this));
     table->setCellWidget(table->rowCount()-2,3,new QLabel(QString::number(a->getMaxPersone()),this));
-    table->setCellWidget(table->rowCount()-2,4,new QLabel(QString::number(a->getLeggii()),this));
-    table->setCellWidget(table->rowCount()-2,5,new QLabel(QString::number(a->getPreseCorrente()),this));
+    table->setCellWidget(table->rowCount()-2,4,new QLabel(QString::fromStdString(a->getStrumento()),this));
+
     QPushButton* remove=new QPushButton("-",this);
-    table->setCellWidget(table->rowCount()-2,7,remove);
+    table->setCellWidget(table->rowCount()-2,6,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = table->indexAt(remove->pos()).row();
-        emit rimuovi_signal_s(riga);
+        emit rimuovi_signal_str(riga);
     });
 }
-void aulaStudio_view::rimuovi_aula(uint i){
+void aulaStrumentale_view::rimuovi_aula(uint i){
     table->removeRow(i);
-    emit rimuovi_signal_studio(i);
+    emit rimuovi_signal_strumentale(i);
 }
 
-void aulaStudio_view::closeEvent(QCloseEvent *event) {
+void aulaStrumentale_view::closeEvent(QCloseEvent *event) {
     if(QMessageBox::question(this,"Uscita","Vuoi uscire davvero?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
         event->accept();
         emit viewClosed();
@@ -102,3 +94,4 @@ void aulaStudio_view::closeEvent(QCloseEvent *event) {
     else
         event->ignore();
 }
+

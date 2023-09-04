@@ -10,8 +10,10 @@
 #include "Controller/menu_controller.h"
 #include "Controller/profilo_controller.h"
 #include "Controller/prenotazioni_controller.h"
-#include "View/aulastudio_view.h")
+#include "View/aulastudio_view.h"
+#include "View/aulaconcerto_view.h"
 #include "View/aula_view.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -19,6 +21,10 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); 
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+    admin_view* aW = new admin_view (QSize(900,600),nullptr);
+    Aula_View* au = new aulaConcerto_view (QSize(900,600),nullptr);
+    AdminController* aC= new AdminController (nullptr, aW, au, nullptr);
+    aC->show();
 
    // QString filename=salvataggio_dati::JsonSelect();
 

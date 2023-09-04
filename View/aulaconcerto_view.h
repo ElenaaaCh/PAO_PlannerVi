@@ -1,17 +1,18 @@
-#ifndef AULASTUDIO_VIEW_H
-#define AULASTUDIO_VIEW_H
+#ifndef AULACONCERTO_VIEW_H
+#define AULACONCERTO_VIEW_H
 
 #include <QRegularExpressionValidator>
 #include "aula_view.h"
-#include "Model/aulaStudio.h"
+#include "Model/aulaConcerto.h"
 #include <QLabel>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QPushButton>
 #include <QMessageBox>
 #include <QVBoxLayout>
+#include <QComboBox>
 
-class aulaStudio_view: public Aula_View
+class aulaConcerto_view : public Aula_View
 {
     Q_OBJECT
 private:
@@ -24,13 +25,16 @@ private:
     QLineEdit* _numero;
     QTextEdit* _sede;
     QLineEdit* _pers;
-    QLineEdit* _leggii;
-    QLineEdit* _prese;
+    QTextEdit* _nome;
+    QTextEdit* _strumento;
+    QLineEdit* _capienza;
+
+    QComboBox* _amplificazione;
 
 protected:
 
 public:
-    explicit aulaStudio_view(const QSize& s, View* );
+    explicit aulaConcerto_view(const QSize& s, View* );
     void closeEvent(QCloseEvent *) override;
     void createTable(const QStringList&) override;
     void carica_view(const contenitore<aula*>&) override;
@@ -39,9 +43,10 @@ public:
 
 signals:
     void viewClosed() const; //close_signal to controller
-    void rimuovi_signal_studio(uint) const;
-    void rimuovi_signal_s(uint) const;
+    void rimuovi_signal_concerto(uint) const;
+    void rimuovi_signal_c(uint) const;
+    void prova_signal();
 
 };
 
-#endif // AULASTUDIO_VIEW_H
+#endif // AULACONCERTO_VIEW_H

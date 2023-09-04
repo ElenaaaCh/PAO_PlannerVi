@@ -8,6 +8,7 @@
 #include "Model/contenitore.h"
 #include "Model/aula.h"
 #include "view.h"
+
 class Aula_View: public View
 {
     Q_OBJECT    
