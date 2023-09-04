@@ -1,7 +1,6 @@
 #include "aulastrumentale_view.h"
 
 aulaStrumentale_view::aulaStrumentale_view(const QSize& s, View* parent) : Aula_View(s,parent), table(new QTableWidget(this)){
-    resize(QSize(400,500));
     vbox=new QVBoxLayout(this);
 }
 
@@ -10,7 +9,7 @@ void aulaStrumentale_view::createTable(const QStringList& headers){
     table->setRowCount(0);
     table->setColumnCount(5);
     table->setHorizontalHeaderLabels(headers);
-    table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
     table->setColumnWidth(4,25);

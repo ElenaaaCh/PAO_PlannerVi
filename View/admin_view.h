@@ -16,13 +16,6 @@
 #include <QScrollArea>
 #include <QTableWidget>
 
-/*
-#include <QTextEdit>
-#include <QDateEdit>
-#include <QLineEdit>
-#include <QRegularExpressionValidator>
-*/
-
 class admin_view: public View {
     Q_OBJECT
 private:
@@ -33,18 +26,15 @@ private:
     QTableWidget* StrumTable;
     QPushButton* saveButton;
 
-    //void connectViewSignals() const override;
-
 protected:
     explicit admin_view();
 
 public:
     explicit admin_view(const QSize& s, View *parent = nullptr);
-    //void createAulaRow(const aula& a);
     //void setViewTitle (const QString &title) override;
     void closeEvent(QCloseEvent *event) override;
 signals:
-    void viewClosed() const; //close_signal to controller
+    void viewClosed() const;
 
 };
 

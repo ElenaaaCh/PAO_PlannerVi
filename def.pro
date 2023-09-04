@@ -17,6 +17,7 @@ RESOURCES = resources.qrc \
 
 SOURCES += \
     Controller/admin_controller.cpp \
+    Controller/aule_controller.cpp \
     Controller/controller.cpp \
     Controller/login_controller.cpp \
     Controller/menu_controller.cpp \
@@ -49,6 +50,7 @@ SOURCES += \
 
 HEADERS += \
     Controller/admin_controller.h \
+    Controller/aule_controller.h \
     Controller/controller.h \
     Controller/login_controller.h \
     Controller/menu_controller.h \

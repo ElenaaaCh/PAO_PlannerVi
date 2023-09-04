@@ -1,7 +1,6 @@
 #include "aulastudio_view.h"
 
 aulaStudio_view::aulaStudio_view(const QSize& s, View* parent) : Aula_View(s,parent), table(new QTableWidget(this)){
-    resize(QSize(400,500));
     vbox=new QVBoxLayout(this);
 }
 
@@ -9,7 +8,7 @@ void aulaStudio_view::createTable(const QStringList& headers){
     table->setRowCount(0);
     table->setColumnCount(6);
     table->setHorizontalHeaderLabels(headers);
-    table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
     table->setColumnWidth(4,25);

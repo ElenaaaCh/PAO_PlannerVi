@@ -6,5 +6,4 @@ void Aula_View::closeEvent(QCloseEvent *event) {
     event->accept();
     hide();
     emit viewClosed();
-
 }

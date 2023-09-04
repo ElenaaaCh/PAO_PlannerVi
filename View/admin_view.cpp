@@ -1,7 +1,6 @@
 #include "admin_view.h"
 
 admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayout(new QGridLayout(this)){
-    // Grid layout with 3 buttons
     mainLayout->setSpacing(10);
 
     saveButton = new QPushButton("Save",this);
@@ -21,7 +20,6 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
 
     //implementazione
     setLayout(mainLayout);
-
 }
 
 void admin_view::closeEvent(QCloseEvent *event){

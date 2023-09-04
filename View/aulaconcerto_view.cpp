@@ -1,17 +1,14 @@
 #include "aulaconcerto_view.h"
 
 aulaConcerto_view::aulaConcerto_view(const QSize& s, View* parent) : Aula_View(s,parent), table(new QTableWidget(this)){
-    resize(QSize(400,500));
     vbox=new QVBoxLayout(this);
-
-    emit prova_signal();
 }
 
 void aulaConcerto_view::createTable(const QStringList& headers){
     table->setRowCount(0);
     table->setColumnCount(8);
     table->setHorizontalHeaderLabels(headers);
-    table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
     table->setColumnWidth(4,25);
