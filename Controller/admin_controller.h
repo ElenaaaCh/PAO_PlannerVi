@@ -6,6 +6,7 @@
 #include "View/aula_view.h"
 //#include "View/aulaconcerto_view.h"
 #include "Model/storage.h"
+#include "aule_controller.h"
 #include <QFile>
 #include <QDebug>
 

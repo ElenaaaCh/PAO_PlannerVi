@@ -69,9 +69,15 @@ storage::storage(QJsonDocument* document, string& path ): aule_concerto(contenit
     }
 }
 
-//const contenitore<aula*>& storage::getContAula() const{
-  ///  return aule_concerto;
-//}
+const contenitore<aula*>& storage::getContAula1() const{
+    return aule_concerto;
+}
+const contenitore<aula*>& storage::getContAula2() const{
+    return aule_strumentali;
+}
+const contenitore<aula*>& storage::getContAula3() const{
+    return aule_studio;
+}
 const contenitore<prenotazione*>& storage::getContPren() const{
     return prenotazioni;
 }

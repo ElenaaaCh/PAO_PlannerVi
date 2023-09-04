@@ -37,7 +37,9 @@ public:
     explicit storage(QJsonDocument*,string& );
     virtual ~storage();//distr
 
-    const contenitore<aula*>& getContAula() const;
+    const contenitore<aula*>& getContAula1() const;
+    const contenitore<aula*>& getContAula2() const;
+    const contenitore<aula*>& getContAula3() const;
     const contenitore<prenotazione*>& getContPren() const;
     const vector<utente*>& getUtente() const;
 
