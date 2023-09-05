@@ -23,10 +23,10 @@ private:
 
     QLineEdit* _piano;
     QLineEdit* _numero;
-    QTextEdit* _sede;
+    QLineEdit* _sede;
     QLineEdit* _pers;
-    QTextEdit* _nome;
-    QTextEdit* _strumento;
+    QLineEdit* _nome;
+    QLineEdit* _strumento;
     QLineEdit* _capienza;
 
     QComboBox* _amplificazione;

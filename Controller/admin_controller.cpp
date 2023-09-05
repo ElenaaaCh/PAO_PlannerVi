@@ -10,7 +10,7 @@ AdminController::AdminController(storage* s, admin_view * a, Controller* c) : Co
 }
 
 void AdminController::concerto_enter() const {
-    Aula_View* aW_c = new aulaConcerto_view(QSize(400,500),view);
+    Aula_View* aW_c = new aulaConcerto_view(QSize(800,400),view);
     aula_controller* ac= new aula_controller (getModel(), aW_c, const_cast<AdminController*>(this));
     ac->getView()->createTable();
 
@@ -21,17 +21,21 @@ void AdminController::concerto_enter() const {
 }
 
 void AdminController::str_enter() const {
-    Aula_View* aW_s = new aulaStrumentale_view(QSize(400,500),view);
+    Aula_View* aW_s = new aulaStrumentale_view(QSize(800,400),view);
     aula_controller* ac= new aula_controller (getModel(), aW_s, const_cast<AdminController*>(this));
     ac->getView()->createTable();
+    contenitore<aula*> c = getModel()->getContAula2();
+    ac->getView()->carica_view(c);
     hide();
     ac->show();
 }
 
 void AdminController::studio_enter() const {
-    Aula_View* aW_st = new aulaStudio_view(QSize(400,500),view);
+    Aula_View* aW_st = new aulaStudio_view(QSize(800,400),view);
     aula_controller* ac= new aula_controller (getModel(), aW_st, const_cast<AdminController*>(this));
     ac->getView()->createTable();
+    contenitore<aula*> c = getModel()->getContAula3();
+    ac->getView()->carica_view(c);
     hide();
     ac->show();
 }

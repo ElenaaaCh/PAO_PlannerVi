@@ -8,22 +8,19 @@
 #include "View/aulastrumentale_view.h"
 #include "View/aulaconcerto_view.h"
 #include <QObject>
-#include <QVBoxLayout>
+#include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QWidget>
-#include <QScrollArea>
-#include <QTableWidget>
 
 class admin_view: public View {
     Q_OBJECT
 private:
     aulaStudio_view * studio;
     QGridLayout* mainLayout;
-    //QTableWidget* ConcertoTable;
-    //QTableWidget* StudioTable;
-    //QTableWidget* StrumTable;
+    QHBoxLayout* hbox;
+    QLabel* benvenuto;
     QPushButton* saveButton;
     QPushButton* concertoButton;
     QPushButton* strumButton;

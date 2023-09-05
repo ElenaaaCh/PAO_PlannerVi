@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 
     storage* st=new storage(document, filename.toStdString());
 
-    admin_view* aW = new admin_view (QSize(900,600),nullptr);
+    admin_view* aW = new admin_view (QSize(300,400),nullptr);
     AdminController* aC= new AdminController (st, aW, nullptr);
     aC->show();
 

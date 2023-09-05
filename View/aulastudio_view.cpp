@@ -6,12 +6,15 @@ aulaStudio_view::aulaStudio_view(const QSize& s, View* parent) : Aula_View(s,par
 
 void aulaStudio_view::createTable(){
     table->setRowCount(0);
-    table->setColumnCount(6);
-    table->setHorizontalHeaderLabels({"Piano","Numero","Sede", "PersoneMax", "Strumento"});
+    table->setColumnCount(8);
+    table->setHorizontalHeaderLabels({"Piano","Numero","Sede", "PersoneMax", "Leggii", "PreseCorrente","Elimina","Aggiungi"});
     table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
-    table->setColumnWidth(4,25);
+    for(int i=0;i<6;i++){
+        table->setColumnWidth(i, 100);
+    }
+    table->setColumnWidth(7, 50);
     vbox->addWidget(table);
 }
 void aulaStudio_view::carica_view(const contenitore<aula*>& au){
@@ -46,7 +49,7 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
     _numero->setValidator(validator);
     table->setCellWidget(i,1,_numero);
 
-    _sede = new QTextEdit(this);
+    _sede = new QLineEdit(this);
     table->setCellWidget(i,2,_sede);
 
     _pers = new QLineEdit(this);
@@ -64,8 +67,12 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
     _prese->setValidator(validator);
     table->setCellWidget(i,5,_prese);
 
+    QLineEdit* vuoto = new QLineEdit(this);
+    vuoto->setReadOnly(true);
+    table->setCellWidget(i,6,vuoto);
+
     aggiungi = new QPushButton ("+", this);
-    table->setCellWidget(i,6,aggiungi);
+    table->setCellWidget(i,7,aggiungi);
     table->resizeColumnsToContents();
 
     // Connessione del pulsante
@@ -82,7 +89,7 @@ void aulaStudio_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,4,new QLabel(QString::number(a->getLeggii()),this));
     table->setCellWidget(table->rowCount()-2,5,new QLabel(QString::number(a->getPreseCorrente()),this));
     QPushButton* remove=new QPushButton("-",this);
-    table->setCellWidget(table->rowCount()-2,7,remove);
+    table->setCellWidget(table->rowCount()-2,6,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = table->indexAt(remove->pos()).row();
         emit rimuovi_signal_s(riga);

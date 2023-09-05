@@ -6,12 +6,15 @@ aulaConcerto_view::aulaConcerto_view(const QSize& s, View* parent) : Aula_View(s
 
 void aulaConcerto_view::createTable(){
     table->setRowCount(0);
-    table->setColumnCount(8);
-    table->setHorizontalHeaderLabels({"Piano","Numero","Sede", "PersoneMax", "Nome", "Strumento", "Capienza", "Amplificazione"});
+    table->setColumnCount(10);
+    table->setHorizontalHeaderLabels({"Piano","Numero","Sede", "PersoneMax", "Nome", "Strumento", "Capienza", "Amplificazione","Elimina","Aggiungi"});
     table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
-    table->setColumnWidth(4,25);
+    for(int i=0;i<8;i++){
+        table->setColumnWidth(i, 100);
+    }
+    table->setColumnWidth(9, 50);
     vbox->addWidget(table);
 }
 
@@ -58,7 +61,7 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     _numero->setValidator(validator);
     table->setCellWidget(i,1,_numero);
 
-    _sede = new QTextEdit(this);
+    _sede = new QLineEdit(this);
     table->setCellWidget(i,2,_sede);
 
     _pers = new QLineEdit(this);
@@ -66,10 +69,10 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     _pers->setValidator(validator);
     table->setCellWidget(i,3,_pers);
 
-    _nome = new QTextEdit(this);
+    _nome = new QLineEdit(this);
     table->setCellWidget(i,4,_nome);
 
-    _strumento = new QTextEdit(this);
+    _strumento = new QLineEdit(this);
     table->setCellWidget(i,5,_strumento);
 
     _capienza = new QLineEdit(this);
@@ -84,8 +87,12 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     _amplificazione->setCurrentIndex(0);//true
     table->setCellWidget(i,7,_amplificazione);
 
+    QLineEdit* vuoto = new QLineEdit(this);
+    vuoto->setReadOnly(true);
+    table->setCellWidget(i,8,vuoto);
+
     aggiungi = new QPushButton ("+", this);
-    table->setCellWidget(i,8,aggiungi);
+    table->setCellWidget(i,9,aggiungi);
     table->resizeColumnsToContents();
 
     // Connessione del pulsante
@@ -104,7 +111,7 @@ void aulaConcerto_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,6,new QLabel(QString::number(a->getCapienza()),this));
     table->setCellWidget(table->rowCount()-2,7,new QLabel(QString::number(a->getAmplificazione()),this));
     QPushButton* remove=new QPushButton("-",this);
-    table->setCellWidget(table->rowCount()-2,9,remove);
+    table->setCellWidget(table->rowCount()-2,8,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = table->indexAt(remove->pos()).row();
         emit elimina_signal(riga);

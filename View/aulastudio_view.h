@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QVBoxLayout>
+#include <QHeaderView>
 
 class aulaStudio_view: public Aula_View
 {
@@ -22,7 +23,7 @@ private:
 
     QLineEdit* _piano;
     QLineEdit* _numero;
-    QTextEdit* _sede;
+    QLineEdit* _sede;
     QLineEdit* _pers;
     QLineEdit* _leggii;
     QLineEdit* _prese;
