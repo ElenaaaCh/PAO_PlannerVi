@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QVBoxLayout>
+#include <QPixmap>
 
 class aulaStrumentale_view : public Aula_View
 {

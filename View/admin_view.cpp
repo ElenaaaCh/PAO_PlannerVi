@@ -19,20 +19,32 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
 
     mainLayout->addLayout(hbox,0,1,Qt::AlignJustify);
 
-    concertoButton = new QPushButton("AULE CONCERTO", this);
-    mainLayout->addWidget(concertoButton, 1,1, Qt::AlignLeft);
-
-    /*QPixmap concertoPixmap(":/Images/consvi.svg");
-    QLabel imgLabel1 = new QLabel(this);
-    imgLabel1->setPixmap(concertoPixmap.scaledToHeight(150));
+    QPixmap concertoPixmap(":/Images/aula_conc.svg");
+    QLabel* imgLabel1 = new QLabel(this);
+    imgLabel1->setPixmap(concertoPixmap.scaledToHeight(100));
     imgLabel1->setAlignment(Qt::AlignHCenter);
-    layout->addWidget(imgLabel1);
-*/
+    mainLayout->addWidget(imgLabel1,1,1,Qt::AlignLeft);
+
+    concertoButton = new QPushButton("AULE CONCERTO", this);
+    mainLayout->addWidget(concertoButton, 1,2, Qt::AlignLeft);
+
+    QPixmap strPixmap(":/Images/aula_str.svg");
+    QLabel* imgLabel2 = new QLabel(this);
+    imgLabel2->setPixmap(strPixmap.scaledToHeight(100));
+    imgLabel2->setAlignment(Qt::AlignHCenter);
+    mainLayout->addWidget(imgLabel2,2,1,Qt::AlignLeft);
+
     strumButton = new QPushButton("AULE STRUMENTALI", this);
-    mainLayout->addWidget(strumButton, 2,1, Qt::AlignLeft);
+    mainLayout->addWidget(strumButton, 2,2, Qt::AlignLeft);
+
+    QPixmap studioPixmap(":/Images/aula_studio.svg");
+    QLabel* imgLabel3 = new QLabel(this);
+    imgLabel3->setPixmap(studioPixmap.scaledToHeight(100));
+    imgLabel3->setAlignment(Qt::AlignHCenter);
+    mainLayout->addWidget(imgLabel3,3,1,Qt::AlignLeft);
 
     studioButton = new QPushButton("AULE STUDIO", this);
-    mainLayout->addWidget(studioButton, 3,1, Qt::AlignLeft);
+    mainLayout->addWidget(studioButton, 3,2, Qt::AlignLeft);
 
     connect(concertoButton,SIGNAL(clicked(bool)),this,SLOT(slot1()));
     connect(strumButton,SIGNAL(clicked(bool)),this,SLOT(slot2()));

@@ -40,7 +40,10 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
         QLabel* amplLabel = new QLabel(QString::number(as->getAmplificazione()), this);
         table->setCellWidget(i, 7, amplLabel);
 
-        QPushButton* rimuovi = new QPushButton("-",this);
+        // Crea un QPushButton e imposta la QPixmap come icona
+        QPixmap pixmap(":/Images/delete.svg");
+        QPushButton *rimuovi = new QPushButton(this);
+        rimuovi->setIcon(QIcon(pixmap));
         table->setCellWidget(i, 8, rimuovi);
         connect (rimuovi, &QPushButton::clicked,[this, rimuovi](){
             unsigned int riga = table->indexAt(rimuovi->pos()).row();
@@ -88,10 +91,11 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     table->setCellWidget(i,7,_amplificazione);
 
     QPushButton* vuoto = new QPushButton(this);
-    //vuoto->setReadOnly(true);
     table->setCellWidget(i,8,vuoto);
 
-    aggiungi = new QPushButton ("+", this);
+    QPixmap pixmapA(":/Images/add.svg");
+    aggiungi = new QPushButton (this);
+    aggiungi->setIcon(QIcon(pixmapA));
     table->setCellWidget(i,9,aggiungi);
     table->resizeColumnsToContents();
 
@@ -110,6 +114,7 @@ void aulaConcerto_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,5,new QLabel(QString::fromStdString(a->getStrumento()),this));
     table->setCellWidget(table->rowCount()-2,6,new QLabel(QString::number(a->getCapienza()),this));
     table->setCellWidget(table->rowCount()-2,7,new QLabel(QString::number(a->getAmplificazione()),this));
+
     QPushButton* remove=new QPushButton("-",this);
     table->setCellWidget(table->rowCount()-2,8,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
@@ -142,11 +147,7 @@ void aulaConcerto_view::rimuovi_aula(uint i){
 }
 
 void aulaConcerto_view::closeEvent(QCloseEvent *event) {
-    if(QMessageBox::question(this,"Uscita","Vuoi uscire davvero?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
         event->accept();
-        emit viewClosed();
-    }
-    else
-        event->ignore();
+        emit viewClosed();   
 }
 

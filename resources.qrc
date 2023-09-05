@@ -1,8 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>Images/consvi.svg</file>
+	<file>Images/add.svg</file>
         <file>Images/delete.svg</file>
-        <file>Images/edit.svg</file>
-        <file>Images/search.svg</file>
+	<file>Images/aula_conc.svg</file>
+	<file>Images/aula_str.svg</file>
+	<file>Images/aula_studio.svg</file>
     </qresource>
 </RCC>

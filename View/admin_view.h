@@ -13,6 +13,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QWidget>
+#include <QPixmap>
 
 class admin_view: public View {
     Q_OBJECT

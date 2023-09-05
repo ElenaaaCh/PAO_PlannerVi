@@ -34,6 +34,15 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
         table->setCellWidget(i, 4, leggiiLabel);
         QLabel* preseLabel = new QLabel(QString::number(as->getPreseCorrente()), this);
         table->setCellWidget(i, 5, preseLabel);
+        QPixmap pixmap(":/Images/delete.svg");
+
+        QPushButton *rimuovi = new QPushButton(this);
+        rimuovi->setIcon(QIcon(pixmap));
+        table->setCellWidget(i, 6, rimuovi);
+        connect (rimuovi, &QPushButton::clicked,[this, rimuovi](){
+            unsigned int riga = table->indexAt(rimuovi->pos()).row();
+            emit rimuovi_aula(riga);
+        });
 
         i++;
     }
@@ -67,11 +76,12 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
     _prese->setValidator(validator);
     table->setCellWidget(i,5,_prese);
 
-    QLineEdit* vuoto = new QLineEdit(this);
-    vuoto->setReadOnly(true);
+    QPushButton* vuoto = new QPushButton(this);
     table->setCellWidget(i,6,vuoto);
 
-    aggiungi = new QPushButton ("+", this);
+    QPixmap pixmapA(":/Images/add.svg");
+    aggiungi = new QPushButton (this);
+    aggiungi->setIcon(QIcon(pixmapA));
     table->setCellWidget(i,7,aggiungi);
     table->resizeColumnsToContents();
 
@@ -88,6 +98,7 @@ void aulaStudio_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,3,new QLabel(QString::number(a->getMaxPersone()),this));
     table->setCellWidget(table->rowCount()-2,4,new QLabel(QString::number(a->getLeggii()),this));
     table->setCellWidget(table->rowCount()-2,5,new QLabel(QString::number(a->getPreseCorrente()),this));
+
     QPushButton* remove=new QPushButton("-",this);
     table->setCellWidget(table->rowCount()-2,6,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){

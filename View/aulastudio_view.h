@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QHeaderView>
+#include <QPixmap>
 
 class aulaStudio_view: public Aula_View
 {

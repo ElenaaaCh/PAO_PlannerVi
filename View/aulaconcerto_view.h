@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QComboBox>
+#include <QPixmap>
 
 class aulaConcerto_view : public Aula_View
 {

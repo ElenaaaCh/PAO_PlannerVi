@@ -59,11 +59,12 @@ void aulaStrumentale_view::carica_view(const contenitore<aula*>& au){
     _strumento = new QLineEdit(this);
     table->setCellWidget(i,4,_strumento);
 
-    QLineEdit* vuoto = new QLineEdit(this);
-    vuoto->setReadOnly(true);
+    QPushButton* vuoto = new QPushButton(this);
     table->setCellWidget(i,5,vuoto);
 
-    aggiungi = new QPushButton ("+", this);
+    QPixmap pixmapA(":/Images/add.svg");
+    aggiungi = new QPushButton (this);
+    aggiungi->setIcon(QIcon(pixmapA));
     table->setCellWidget(i,6,aggiungi);
     table->resizeColumnsToContents();
 
@@ -93,11 +94,7 @@ void aulaStrumentale_view::rimuovi_aula(uint i){
 }
 
 void aulaStrumentale_view::closeEvent(QCloseEvent *event) {
-    if(QMessageBox::question(this,"Uscita","Vuoi uscire davvero?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
-        event->accept();
-        emit viewClosed();
-    }
-    else
-        event->ignore();
+    event->accept();
+    emit viewClosed();
 }
 
