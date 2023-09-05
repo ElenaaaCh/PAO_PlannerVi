@@ -28,10 +28,8 @@ private:
     QLineEdit* _nome;
     QLineEdit* _strumento;
     QLineEdit* _capienza;
-
     QComboBox* _amplificazione;
 
-protected:
 
 public:
     explicit aulaConcerto_view(const QSize& s, View* );
@@ -41,8 +39,12 @@ public:
     void addToView(aula*) override;
     void rimuovi_aula(uint) override;
 
+public slots:
+    void aggiungi_slot();
+
 signals:
     void viewClosed() const; //close_signal to controller
+    void aggiungi_signal_c(const int&, const int&, const QString&, const int&, const QString&,const QString&, const int&, const bool&);
     void rimuovi_signal(uint) const;
     void elimina_signal(uint) const;
 

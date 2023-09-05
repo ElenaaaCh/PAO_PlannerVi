@@ -1,4 +1,36 @@
 {
+    "aule_concerto": [
+        {
+            "Piano": 1,
+            "Numero": 101,
+            "Sede": "Sede principale",
+            "Persone": 30,
+            "Nome": "Sala concerti M.Pobbe",
+            "Strumento": "Pianoforte a coda",
+            "Capienza": 250,
+            "Amplificazione": true
+        },
+        {
+            "Piano": 1,
+            "Numero": 102,
+            "Sede": "Sede principale",
+            "Persone": 15,
+            "Nome": "Chiesetta di San Domenico",
+            "Strumento": "Clavicembalo e fortepiano",
+            "Capienza": 100,
+            "Amplificazione": false
+        },
+        {
+            "Piano": 1,
+            "Numero": 1,
+            "Sede": "Teatro Olimpico",
+            "Persone": 100,
+            "Nome": "Teatro Olimpico",
+            "Strumento": "Pianoforte a coda",
+            "Capienza": 500,
+            "Amplificazione": true
+        }
+    ],
     "prenotazioni": [
         {
             "Persona": "anna.bach@consvi.it",

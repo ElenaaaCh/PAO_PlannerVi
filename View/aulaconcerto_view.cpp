@@ -87,8 +87,8 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     _amplificazione->setCurrentIndex(0);//true
     table->setCellWidget(i,7,_amplificazione);
 
-    QLineEdit* vuoto = new QLineEdit(this);
-    vuoto->setReadOnly(true);
+    QPushButton* vuoto = new QPushButton(this);
+    //vuoto->setReadOnly(true);
     table->setCellWidget(i,8,vuoto);
 
     aggiungi = new QPushButton ("+", this);
@@ -97,7 +97,7 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
 
     // Connessione del pulsante
     connect(aggiungi, SIGNAL(clicked()), this, SIGNAL (ButtonClicked()));
-    connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_pren()));
+    connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_slot()));
 }
 void aulaConcerto_view::addToView(aula* b) {
     aulaConcerto* a= static_cast<aulaConcerto*>(b);
@@ -116,6 +116,25 @@ void aulaConcerto_view::addToView(aula* b) {
         unsigned int riga = table->indexAt(remove->pos()).row();
         emit elimina_signal(riga);
     });
+}
+void aulaConcerto_view::aggiungi_slot(){
+    int piano = (_piano->text()).toInt();
+    int numero = (_numero->text()).toInt();
+    QString sede = _sede->text();
+    int pers = (_pers->text()).toInt();
+    QString nome = _nome->text();
+    QString strum = _strumento->text();
+    int cap = (_capienza->text()).toInt();
+    QString selectedValue = _amplificazione->currentText();
+    bool ampl = (selectedValue == "true");
+
+    //controllo errori basilari
+    if(piano==NULL || numero==NULL || sede.isEmpty() || pers==NULL || nome.isEmpty() || strum.isEmpty() || cap==NULL){
+        static_cast<View*>(this)->showError("Inserimento non valido", "I valori inseriti non sono accettati");
+    }
+    else{
+        emit aggiungi_signal_c(piano, numero, sede, pers, nome, strum, cap, ampl);
+    }
 }
 void aulaConcerto_view::rimuovi_aula(uint i){
     table->removeRow(i);

@@ -19,6 +19,8 @@ public:
 
 public slots:
     void onViewClosed() const override;
+    void aggiungi_enter_c(const int&, const int&, const QString&, const int&, const QString&,const QString&, const int&, const bool&) const;
+    void rimuovi_enter(uint i);
 };
 
 #endif // AULA_CONTROLLER_H
