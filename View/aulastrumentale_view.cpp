@@ -5,10 +5,10 @@ aulaStrumentale_view::aulaStrumentale_view(const QSize& s, View* parent) : Aula_
 }
 
 
-void aulaStrumentale_view::createTable(const QStringList& headers){
+void aulaStrumentale_view::createTable(){
     table->setRowCount(0);
     table->setColumnCount(5);
-    table->setHorizontalHeaderLabels(headers);
+    table->setHorizontalHeaderLabels({"Piano","Numero","Sede", "PersoneMax", "Leggii", "PreseCorrente"});
     table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);

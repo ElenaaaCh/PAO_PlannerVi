@@ -4,16 +4,17 @@ aulaConcerto_view::aulaConcerto_view(const QSize& s, View* parent) : Aula_View(s
     vbox=new QVBoxLayout(this);
 }
 
-void aulaConcerto_view::createTable(const QStringList& headers){
+void aulaConcerto_view::createTable(){
     table->setRowCount(0);
     table->setColumnCount(8);
-    table->setHorizontalHeaderLabels(headers);
+    table->setHorizontalHeaderLabels({"Piano","Numero","Sede", "PersoneMax", "Nome", "Strumento", "Capienza", "Amplificazione"});
     table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
     table->setColumnWidth(4,25);
     vbox->addWidget(table);
 }
+
 void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     int i=0;
     for(auto j: au){
@@ -33,9 +34,15 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
         table->setCellWidget(i, 5, strumLabel);
         QLabel* capienzaLabel = new QLabel(QString::number(as->getCapienza()), this);
         table->setCellWidget(i, 6, capienzaLabel);
-
         QLabel* amplLabel = new QLabel(QString::number(as->getAmplificazione()), this);
         table->setCellWidget(i, 7, amplLabel);
+
+        QPushButton* rimuovi = new QPushButton("-",this);
+        table->setCellWidget(i, 8, rimuovi);
+        connect (rimuovi, &QPushButton::clicked,[this, rimuovi](){
+            unsigned int riga = table->indexAt(rimuovi->pos()).row();
+            emit rimuovi_aula(riga);
+        });
 
         i++;
     }
@@ -100,12 +107,12 @@ void aulaConcerto_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,9,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = table->indexAt(remove->pos()).row();
-        emit rimuovi_signal_c(riga);
+        emit elimina_signal(riga);
     });
 }
 void aulaConcerto_view::rimuovi_aula(uint i){
     table->removeRow(i);
-    emit rimuovi_signal_concerto(i);
+    emit rimuovi_signal(i);
 }
 
 void aulaConcerto_view::closeEvent(QCloseEvent *event) {
@@ -116,3 +123,4 @@ void aulaConcerto_view::closeEvent(QCloseEvent *event) {
     else
         event->ignore();
 }
+

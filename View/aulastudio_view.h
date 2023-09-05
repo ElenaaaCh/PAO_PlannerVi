@@ -32,7 +32,7 @@ protected:
 public:
     explicit aulaStudio_view(const QSize& s, View* );
     void closeEvent(QCloseEvent *) override;
-    void createTable(const QStringList&) override;
+    void createTable() override;
     void carica_view(const contenitore<aula*>&) override;
     void addToView(aula*) override;
     void rimuovi_aula(uint) override;

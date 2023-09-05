@@ -17,7 +17,7 @@ protected:
 
 public:
     void closeEvent(QCloseEvent *) override;
-    virtual void createTable(const QStringList&)=0;
+    virtual void createTable()=0;
     virtual void carica_view(const contenitore<aula*>&)=0;
     virtual void addToView(aula*)=0;
    virtual  void rimuovi_aula(uint)=0;

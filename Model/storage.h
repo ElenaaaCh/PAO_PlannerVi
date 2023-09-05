@@ -34,7 +34,7 @@ private:
 public:
     explicit storage();
     explicit storage(contenitore<aula*>& , contenitore<aula*>& , contenitore<aula*>& , contenitore<prenotazione*>& , vector<utente*>& );//costr
-    explicit storage(QJsonDocument*,string& );
+    explicit storage(QJsonDocument*, const string& );
     virtual ~storage();//distr
 
     const contenitore<aula*>& getContAula1() const;
@@ -61,7 +61,7 @@ public:
 
     void addPrenotazioneToJSON(prenotazione* pr);
     void removePrenotazioneFromJSON(uint i);
-    void saveJsonData() const;
+    //void saveJsonData() const;
 };
 
 

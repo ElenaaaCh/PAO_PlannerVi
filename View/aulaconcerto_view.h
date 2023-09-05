@@ -36,16 +36,15 @@ protected:
 public:
     explicit aulaConcerto_view(const QSize& s, View* );
     void closeEvent(QCloseEvent *) override;
-    void createTable(const QStringList&) override;
+    void createTable() override;
     void carica_view(const contenitore<aula*>&) override;
     void addToView(aula*) override;
     void rimuovi_aula(uint) override;
 
 signals:
     void viewClosed() const; //close_signal to controller
-    void rimuovi_signal_concerto(uint) const;
-    void rimuovi_signal_c(uint) const;
-    void prova_signal();
+    void rimuovi_signal(uint) const;
+    void elimina_signal(uint) const;
 
 };
 

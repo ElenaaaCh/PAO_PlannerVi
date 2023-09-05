@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QObject>
 #include <QIcon>
+#include <string>
+
 #include "Model/storage.h"
 #include "Controller/login_controller.h"
 #include "Controller/registrazione_controller.h"
@@ -23,21 +25,22 @@ int main(int argc, char *argv[])
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); 
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    admin_view* aW = new admin_view (QSize(900,600),nullptr);
-    //Aula_View* au = new aulaConcerto_view (QSize(900,600),nullptr);
-    AdminController* aC= new AdminController (nullptr, aW, nullptr);
-    aC->show();
 
-   // QString filename=salvataggio_dati::JsonSelect();
 
-   // QJsonDocument* document = salvataggio_dati::getFileJson(filename);
+    QString filename=salvataggio_dati::JsonSelect();
+
+    QJsonDocument* document = salvataggio_dati::getFileJson(filename);
     //if (document->isNull()){
     //    QMessageBox::warning(nullptr,"ERRORE","Errore File Json",QMessageBox::Yes);
     //    QApplication::quit();
     //    return 0;
   //  }
 
-    //storage* st=new storage(document);
+    storage* st=new storage(document, filename.toStdString());
+
+    admin_view* aW = new admin_view (QSize(900,600),nullptr);
+    AdminController* aC= new AdminController (st, aW, nullptr);
+    aC->show();
 
    // login_view* login = new login_view(QSize(500,300),nullptr);
   //  LoginController* log_controller= new LoginController (st, login);

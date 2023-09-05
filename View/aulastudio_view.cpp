@@ -4,10 +4,10 @@ aulaStudio_view::aulaStudio_view(const QSize& s, View* parent) : Aula_View(s,par
     vbox=new QVBoxLayout(this);
 }
 
-void aulaStudio_view::createTable(const QStringList& headers){
+void aulaStudio_view::createTable(){
     table->setRowCount(0);
     table->setColumnCount(6);
-    table->setHorizontalHeaderLabels(headers);
+    table->setHorizontalHeaderLabels({"Piano","Numero","Sede", "PersoneMax", "Strumento"});
     table->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     table->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);

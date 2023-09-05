@@ -21,10 +21,13 @@ class admin_view: public View {
 private:
     aulaStudio_view * studio;
     QGridLayout* mainLayout;
-    QTableWidget* ConcertoTable;
-    QTableWidget* StudioTable;
-    QTableWidget* StrumTable;
+    //QTableWidget* ConcertoTable;
+    //QTableWidget* StudioTable;
+    //QTableWidget* StrumTable;
     QPushButton* saveButton;
+    QPushButton* concertoButton;
+    QPushButton* strumButton;
+    QPushButton* studioButton;
 
 protected:
     explicit admin_view();
@@ -33,9 +36,17 @@ public:
     explicit admin_view(const QSize& s, View *parent = nullptr);
     //void setViewTitle (const QString &title) override;
     void closeEvent(QCloseEvent *event) override;
+
 signals:
+    void View_concerto_signal() const;
+    void View_str_signal() const;
+    void View_studio_signal() const;
     void viewClosed() const;
 
+public slots:
+    void slot1() const;
+    void slot2() const;
+    void slot3() const;
 };
 
 #endif // ADMIN_VIEW_H

@@ -9,7 +9,7 @@ storage::storage(){
     pers=std::vector<utente*>();
 }
 
-storage::storage(QJsonDocument* document, string& path ): aule_concerto(contenitore<aula*>()), aule_studio(contenitore<aula*>()), aule_strumentali(contenitore<aula*>()), prenotazioni(contenitore<prenotazione*>()), pers(std::vector<utente*>()){
+storage::storage(QJsonDocument* document, const string& path ): aule_concerto(contenitore<aula*>()), aule_studio(contenitore<aula*>()), aule_strumentali(contenitore<aula*>()), prenotazioni(contenitore<prenotazione*>()), pers(std::vector<utente*>()){
     filepath=path;
     QJsonObject JObject = document->object();
 
@@ -107,7 +107,7 @@ storage::~storage() {
     for (auto utente : pers) {
         delete utente;
     }
-    saveJsonData();
+    //saveJsonData();
 }
 
 void storage::addAula_Strumentale(aulaStrumentale* a) {
@@ -182,7 +182,7 @@ void storage::addPrenotazioneToJSON(prenotazione* pr){
     prenotazioniArray.append(nuovaPrenotazione);
     jsonDocument->object()["prenotazioni"] = prenotazioniArray;
 
-    saveJsonData();
+    //saveJsonData();
 }
 
 void storage::removePrenotazioneFromJSON(uint i) {
@@ -190,12 +190,12 @@ void storage::removePrenotazioneFromJSON(uint i) {
     prenotazioniArray.removeAt(i);
     jsonDocument->object()["prenotazioni"] = prenotazioniArray;
 
-    saveJsonData();
+    //saveJsonData();
 }
-
+/*
 void storage::saveJsonData() const {
     QFile file(":/file.json");
     file.write(jsonDocument->toJson());
     file.close();
 }
-
+*/
