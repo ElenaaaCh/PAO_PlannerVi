@@ -19,7 +19,7 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
 
     mainLayout->addLayout(hbox,0,1,Qt::AlignJustify);
 
-    QPixmap concertoPixmap(":/Images/aula_conc.svg");
+    QPixmap concertoPixmap(":/Images/aula_c.png");
     QLabel* imgLabel1 = new QLabel(this);
     imgLabel1->setPixmap(concertoPixmap.scaledToHeight(100));
     imgLabel1->setAlignment(Qt::AlignHCenter);
@@ -28,7 +28,7 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     concertoButton = new QPushButton("AULE CONCERTO", this);
     mainLayout->addWidget(concertoButton, 1,2, Qt::AlignLeft);
 
-    QPixmap strPixmap(":/Images/aula_str.svg");
+    QPixmap strPixmap(":/Images/aula_str.png");
     QLabel* imgLabel2 = new QLabel(this);
     imgLabel2->setPixmap(strPixmap.scaledToHeight(100));
     imgLabel2->setAlignment(Qt::AlignHCenter);
@@ -37,7 +37,7 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     strumButton = new QPushButton("AULE STRUMENTALI", this);
     mainLayout->addWidget(strumButton, 2,2, Qt::AlignLeft);
 
-    QPixmap studioPixmap(":/Images/aula_studio.svg");
+    QPixmap studioPixmap(":/Images/aula_studio.png");
     QLabel* imgLabel3 = new QLabel(this);
     imgLabel3->setPixmap(studioPixmap.scaledToHeight(100));
     imgLabel3->setAlignment(Qt::AlignHCenter);

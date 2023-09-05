@@ -3,8 +3,8 @@
         <file>Images/consvi.svg</file>
 	<file>Images/add.svg</file>
         <file>Images/delete.svg</file>
-	<file>Images/aula_conc.svg</file>
-	<file>Images/aula_str.svg</file>
-	<file>Images/aula_studio.svg</file>
+	<file>Images/aula_str.png</file>
+	<file>Images/aula_studio.png</file>
+	<file>Images/aula_c.png</file>
     </qresource>
 </RCC>

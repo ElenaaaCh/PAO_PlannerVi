@@ -268,9 +268,9 @@ debug/qrc_resources.cpp: ../resources.qrc \
 		../Images/delete.svg \
 		../Images/consvi.svg \
 		../Images/add.svg \
-		../Images/aula_str.svg \
-		../Images/aula_conc.svg \
-		../Images/aula_studio.svg
+		../Images/aula_str.png \
+		../Images/aula_c.png \
+		../Images/aula_studio.png
 	C:\Qt\6.5.2\mingw_64\bin\rcc.exe -name resources --no-zstd ..\resources.qrc -o debug\qrc_resources.cpp
 
 debug/qrc_resources.cpp: ../resources.qrc \
@@ -278,9 +278,9 @@ debug/qrc_resources.cpp: ../resources.qrc \
 		../Images/delete.svg \
 		../Images/consvi.svg \
 		../Images/add.svg \
-		../Images/aula_str.svg \
-		../Images/aula_conc.svg \
-		../Images/aula_studio.svg
+		../Images/aula_str.png \
+		../Images/aula_c.png \
+		../Images/aula_studio.png
 	C:\Qt\6.5.2\mingw_64\bin\rcc.exe -name resources --no-zstd ..\resources.qrc -o debug\qrc_resources.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -531,13 +531,13 @@ debug/moc_admin_controller.cpp: ../Controller/admin_controller.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHeaderView \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		../View/aulastrumentale_view.h \
 		../View/aulaconcerto_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QComboBox \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qcombobox.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QGridLayout \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		../Controller/aula_controller.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.5.2/mingw_64/bin/moc.exe
@@ -3346,13 +3346,13 @@ debug/moc_admin_view.cpp: ../View/admin_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHeaderView \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		../View/aulastrumentale_view.h \
 		../View/aulaconcerto_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QComboBox \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qcombobox.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QGridLayout \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		debug/moc_predefs.h \
 		C:/Qt/6.5.2/mingw_64/bin/moc.exe
 	C:\Qt\6.5.2\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/elena/Desktop/def/build-def-Desktop-Debug/debug/moc_predefs.h -IC:/Qt/6.5.2/mingw_64/mkspecs/win32-g++ -IC:/Users/elena/Desktop/def -IC:/Users/elena/Desktop/def -IC:/Qt/6.5.2/mingw_64/include -IC:/Qt/6.5.2/mingw_64/include/QtWidgets -IC:/Qt/6.5.2/mingw_64/include/QtGui -IC:/Qt/6.5.2/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\View\admin_view.h -o debug\moc_admin_view.cpp
@@ -3758,6 +3758,7 @@ debug/moc_aulaconcerto_view.cpp: ../View/aulaconcerto_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QComboBox \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		debug/moc_predefs.h \
 		C:/Qt/6.5.2/mingw_64/bin/moc.exe
 	C:\Qt\6.5.2\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/elena/Desktop/def/build-def-Desktop-Debug/debug/moc_predefs.h -IC:/Qt/6.5.2/mingw_64/mkspecs/win32-g++ -IC:/Users/elena/Desktop/def -IC:/Users/elena/Desktop/def -IC:/Qt/6.5.2/mingw_64/include -IC:/Qt/6.5.2/mingw_64/include/QtWidgets -IC:/Qt/6.5.2/mingw_64/include/QtGui -IC:/Qt/6.5.2/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\View\aulaconcerto_view.h -o debug\moc_aulaconcerto_view.cpp
@@ -3971,6 +3972,7 @@ debug/moc_aulastrumentale_view.cpp: ../View/aulastrumentale_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		debug/moc_predefs.h \
 		C:/Qt/6.5.2/mingw_64/bin/moc.exe
 	C:\Qt\6.5.2\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/elena/Desktop/def/build-def-Desktop-Debug/debug/moc_predefs.h -IC:/Qt/6.5.2/mingw_64/mkspecs/win32-g++ -IC:/Users/elena/Desktop/def -IC:/Users/elena/Desktop/def -IC:/Qt/6.5.2/mingw_64/include -IC:/Qt/6.5.2/mingw_64/include/QtWidgets -IC:/Qt/6.5.2/mingw_64/include/QtGui -IC:/Qt/6.5.2/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\View\aulastrumentale_view.h -o debug\moc_aulastrumentale_view.cpp
@@ -4186,6 +4188,7 @@ debug/moc_aulastudio_view.cpp: ../View/aulastudio_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHeaderView \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		debug/moc_predefs.h \
 		C:/Qt/6.5.2/mingw_64/bin/moc.exe
 	C:\Qt\6.5.2\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/elena/Desktop/def/build-def-Desktop-Debug/debug/moc_predefs.h -IC:/Qt/6.5.2/mingw_64/mkspecs/win32-g++ -IC:/Users/elena/Desktop/def -IC:/Users/elena/Desktop/def -IC:/Qt/6.5.2/mingw_64/include -IC:/Qt/6.5.2/mingw_64/include/QtWidgets -IC:/Qt/6.5.2/mingw_64/include/QtGui -IC:/Qt/6.5.2/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\View\aulastudio_view.h -o debug\moc_aulastudio_view.cpp
@@ -6174,13 +6177,13 @@ debug/admin_controller.o: ../Controller/admin_controller.cpp ../Controller/admin
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHeaderView \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		../View/aulastrumentale_view.h \
 		../View/aulaconcerto_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QComboBox \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qcombobox.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QGridLayout \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		../Controller/aula_controller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\admin_controller.o ..\Controller\admin_controller.cpp
 
@@ -9415,13 +9418,13 @@ debug/admin_view.o: ../View/admin_view.cpp ../View/admin_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHeaderView \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap \
 		../View/aulastrumentale_view.h \
 		../View/aulaconcerto_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QComboBox \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qcombobox.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QGridLayout \
-		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\admin_view.o ..\View\admin_view.cpp
 
 debug/aula_view.o: ../View/aula_view.cpp ../View/aula_view.h \
@@ -9822,7 +9825,8 @@ debug/aulaconcerto_view.o: ../View/aulaconcerto_view.cpp ../View/aulaconcerto_vi
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QComboBox \
-		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qcombobox.h
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\aulaconcerto_view.o ..\View\aulaconcerto_view.cpp
 
 debug/aulastrumentale_view.o: ../View/aulastrumentale_view.cpp ../View/aulastrumentale_view.h \
@@ -10033,7 +10037,8 @@ debug/aulastrumentale_view.o: ../View/aulastrumentale_view.cpp ../View/aulastrum
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\aulastrumentale_view.o ..\View\aulastrumentale_view.cpp
 
 debug/aulastudio_view.o: ../View/aulastudio_view.cpp ../View/aulastudio_view.h \
@@ -10246,7 +10251,8 @@ debug/aulastudio_view.o: ../View/aulastudio_view.cpp ../View/aulastudio_view.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qlayoutitem.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.5.2/mingw_64/include/QtWidgets/QHeaderView \
-		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qheaderview.h
+		C:/Qt/6.5.2/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.5.2/mingw_64/include/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\aulastudio_view.o ..\View\aulastudio_view.cpp
 
 debug/login_view.o: ../View/login_view.cpp ../View/login_view.h \
