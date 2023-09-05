@@ -47,7 +47,7 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
         table->setCellWidget(i, 8, rimuovi);
         connect (rimuovi, &QPushButton::clicked,[this, rimuovi](){
             unsigned int riga = table->indexAt(rimuovi->pos()).row();
-            emit rimuovi_aula(riga);
+            rimuovi_aula(riga);
         });
 
         i++;
@@ -83,7 +83,6 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     _capienza->setValidator(validator);
     table->setCellWidget(i,6,_capienza);
 
-    //per il boolean cosa conviene fare?
     _amplificazione = new QComboBox (this);
     _amplificazione->addItem("true");
     _amplificazione->addItem("false");
@@ -94,14 +93,13 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
     table->setCellWidget(i,8,vuoto);
 
     QPixmap pixmapA(":/Images/add.svg");
-    aggiungi = new QPushButton (this);
+    aggiungi = new QPushButton(this);
     aggiungi->setIcon(QIcon(pixmapA));
     table->setCellWidget(i,9,aggiungi);
     table->resizeColumnsToContents();
 
     // Connessione del pulsante
-    connect(aggiungi, SIGNAL(clicked()), this, SIGNAL (ButtonClicked()));
-    connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_slot()));
+    connect(aggiungi, SIGNAL(clicked()), this, SLOT(aggiungi_slot()));
 }
 void aulaConcerto_view::addToView(aula* b) {
     aulaConcerto* a= static_cast<aulaConcerto*>(b);
@@ -115,11 +113,13 @@ void aulaConcerto_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,6,new QLabel(QString::number(a->getCapienza()),this));
     table->setCellWidget(table->rowCount()-2,7,new QLabel(QString::number(a->getAmplificazione()),this));
 
-    QPushButton* remove=new QPushButton("-",this);
+    QPixmap pixmap(":/Images/delete.svg");
+    QPushButton *remove = new QPushButton(this);
+    remove->setIcon(QIcon(pixmap));
     table->setCellWidget(table->rowCount()-2,8,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = table->indexAt(remove->pos()).row();
-        emit elimina_signal(riga);
+        rimuovi_aula(riga);
     });
 }
 void aulaConcerto_view::aggiungi_slot(){
@@ -141,13 +141,17 @@ void aulaConcerto_view::aggiungi_slot(){
         emit aggiungi_signal_c(piano, numero, sede, pers, nome, strum, cap, ampl);
     }
 }
+
 void aulaConcerto_view::rimuovi_aula(uint i){
-    table->removeRow(i);
-    emit rimuovi_signal(i);
+    emit rimuovi_signal_concerto(i);
+}
+
+void aulaConcerto_view::chiudi(uint a){
+    table->removeRow(a);
 }
 
 void aulaConcerto_view::closeEvent(QCloseEvent *event) {
-        event->accept();
-        emit viewClosed();   
+    event->accept();
+    emit viewClosed();
 }
 

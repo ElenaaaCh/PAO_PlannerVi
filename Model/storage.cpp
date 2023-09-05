@@ -143,13 +143,13 @@ void storage::addAula_Concerto(aulaConcerto* a){
         }
     });
 }
-void storage::removeAulaStrumentale(aulaStrumentale* aulaToRemove) {
+void storage::removeAulaStrumentale(uint aulaToRemove) {
     aule_strumentali.remove(aulaToRemove);
 }
-void storage::removeAulaStudio(aulaStudio* aulaToRemove) {
+void storage::removeAulaStudio(uint aulaToRemove) {
     aule_studio.remove(aulaToRemove);
 }
-void storage::removeAulaConcerto(aulaConcerto* aulaToRemove) {
+void storage::removeAulaConcerto(uint aulaToRemove) {
     aule_concerto.remove(aulaToRemove);
 }
 void storage::addPrenotazione(prenotazione* pr) {

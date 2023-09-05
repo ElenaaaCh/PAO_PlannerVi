@@ -27,8 +27,6 @@ private:
     QLineEdit* _pers;
     QLineEdit* _strumento;
 
-protected:
-
 public:
     explicit aulaStrumentale_view(const QSize& s, View* );
     void closeEvent(QCloseEvent *) override;
@@ -36,11 +34,15 @@ public:
     void carica_view(const contenitore<aula*>&) override;
     void addToView(aula*) override;
     void rimuovi_aula(uint) override;
+    void chiudi(uint a);
+
+public slots:
+    void aggiungi_slot();
 
 signals:
     void viewClosed() const; //close_signal to controller
     void rimuovi_signal_strumentale(uint) const;
-    void rimuovi_signal_str(uint) const;
+    void aggiungi_signal_str(const int&, const int&, const QString&, const int&, const QString&);
 
 };
 

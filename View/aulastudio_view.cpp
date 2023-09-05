@@ -17,6 +17,7 @@ void aulaStudio_view::createTable(){
     table->setColumnWidth(7, 50);
     vbox->addWidget(table);
 }
+
 void aulaStudio_view::carica_view(const contenitore<aula*>& au){
     int i=0;
     for(auto j: au){
@@ -34,8 +35,8 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
         table->setCellWidget(i, 4, leggiiLabel);
         QLabel* preseLabel = new QLabel(QString::number(as->getPreseCorrente()), this);
         table->setCellWidget(i, 5, preseLabel);
-        QPixmap pixmap(":/Images/delete.svg");
 
+        QPixmap pixmap(":/Images/delete.svg");
         QPushButton *rimuovi = new QPushButton(this);
         rimuovi->setIcon(QIcon(pixmap));
         table->setCellWidget(i, 6, rimuovi);
@@ -86,8 +87,7 @@ void aulaStudio_view::carica_view(const contenitore<aula*>& au){
     table->resizeColumnsToContents();
 
     // Connessione del pulsante
-    connect(aggiungi, SIGNAL(clicked()), this, SIGNAL (ButtonClicked()));
-    connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_pren()));
+    connect(aggiungi, SIGNAL(clicked()), this, SLOT(aggiungi_slot()));
 }
 void aulaStudio_view::addToView(aula* b) {
     aulaStudio* a= static_cast<aulaStudio*>(b);
@@ -99,23 +99,42 @@ void aulaStudio_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,4,new QLabel(QString::number(a->getLeggii()),this));
     table->setCellWidget(table->rowCount()-2,5,new QLabel(QString::number(a->getPreseCorrente()),this));
 
-    QPushButton* remove=new QPushButton("-",this);
+    QPixmap pixmap(":/Images/delete.svg");
+    QPushButton *remove = new QPushButton(this);
+    remove->setIcon(QIcon(pixmap));
     table->setCellWidget(table->rowCount()-2,6,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = table->indexAt(remove->pos()).row();
-        emit rimuovi_signal_s(riga);
+        emit rimuovi_aula(riga);
     });
 }
+
+void aulaStudio_view::aggiungi_slot(){
+    int piano = (_piano->text()).toInt();
+    int numero = (_numero->text()).toInt();
+    QString sede = _sede->text();
+    int pers = (_pers->text()).toInt();
+    int leggii = (_leggii->text()).toInt();
+    int prese = (_prese->text()).toInt();
+
+    //controllo errori basilari
+    if(piano==NULL || numero==NULL || sede.isEmpty() || pers==NULL || leggii==NULL || prese==NULL ){
+        static_cast<View*>(this)->showError("Inserimento non valido", "I valori inseriti non sono accettati");
+    }
+    else{
+        emit aggiungi_signal_s(piano, numero, sede, pers, leggii, prese);
+    }
+}
+
 void aulaStudio_view::rimuovi_aula(uint i){
-    table->removeRow(i);
     emit rimuovi_signal_studio(i);
 }
 
+void aulaStudio_view::chiudi(uint a){
+    table->removeRow(a);
+}
+
 void aulaStudio_view::closeEvent(QCloseEvent *event) {
-    if(QMessageBox::question(this,"Uscita","Vuoi uscire davvero?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
-        event->accept();
-        emit viewClosed();
-    }
-    else
-        event->ignore();
+    event->accept();
+    emit viewClosed();
 }

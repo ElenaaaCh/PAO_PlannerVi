@@ -46,9 +46,9 @@ public:
     void addAula_Strumentale(aulaStrumentale*);
     void addAula_Studio(aulaStudio*);
     void addAula_Concerto(aulaConcerto*);
-    void removeAulaConcerto(aulaConcerto* );
-    void removeAulaStudio(aulaStudio*);
-    void removeAulaStrumentale(aulaStrumentale*);
+    void removeAulaConcerto(uint);
+    void removeAulaStudio(uint);
+    void removeAulaStrumentale(uint);
     aula* searchAula(const int piano, const int numero);
 
     void addPrenotazione(prenotazione* pr);

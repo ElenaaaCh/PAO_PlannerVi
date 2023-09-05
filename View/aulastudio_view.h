@@ -29,8 +29,6 @@ private:
     QLineEdit* _leggii;
     QLineEdit* _prese;
 
-protected:
-
 public:
     explicit aulaStudio_view(const QSize& s, View* );
     void closeEvent(QCloseEvent *) override;
@@ -38,12 +36,15 @@ public:
     void carica_view(const contenitore<aula*>&) override;
     void addToView(aula*) override;
     void rimuovi_aula(uint) override;
+    void chiudi(uint a);
+
+public slots:
+    void aggiungi_slot();
 
 signals:
     void viewClosed() const; //close_signal to controller
     void rimuovi_signal_studio(uint) const;
-    void rimuovi_signal_s(uint) const;
-
+    void aggiungi_signal_s(const int&, const int&, const QString&, const int&, const int&, const int&);
 };
 
 #endif // AULASTUDIO_VIEW_H

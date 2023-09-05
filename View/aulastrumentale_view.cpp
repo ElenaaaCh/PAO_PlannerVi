@@ -4,7 +4,6 @@ aulaStrumentale_view::aulaStrumentale_view(const QSize& s, View* parent) : Aula_
     vbox=new QVBoxLayout(this);
 }
 
-
 void aulaStrumentale_view::createTable(){
     table->setRowCount(0);
     table->setColumnCount(7);
@@ -33,6 +32,15 @@ void aulaStrumentale_view::carica_view(const contenitore<aula*>& au){
         table->setCellWidget(i, 3, persLabel);
         QLabel* strumentoLabel = new QLabel(QString::fromStdString(as->getStrumento()), this);
         table->setCellWidget(i, 4, strumentoLabel);
+
+        QPixmap pixmap(":/Images/delete.svg");
+        QPushButton *rimuovi = new QPushButton(this);
+        rimuovi->setIcon(QIcon(pixmap));
+        table->setCellWidget(i, 8, rimuovi);
+        connect (rimuovi, &QPushButton::clicked,[this, rimuovi](){
+            unsigned int riga = table->indexAt(rimuovi->pos()).row();
+            rimuovi_aula(riga);
+        });
 
         i++;
     }
@@ -69,9 +77,9 @@ void aulaStrumentale_view::carica_view(const contenitore<aula*>& au){
     table->resizeColumnsToContents();
 
     // Connessione del pulsante
-    connect(aggiungi, SIGNAL(clicked()), this, SIGNAL (ButtonClicked()));
-    connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_pren()));
+    connect(aggiungi, SIGNAL(clicked()), this, SLOT(aggiungi_slot()));
 }
+
 void aulaStrumentale_view::addToView(aula* b) {
     aulaStrumentale* a= static_cast<aulaStrumentale*>(b);
     table->insertRow(table->rowCount()-1);
@@ -81,16 +89,38 @@ void aulaStrumentale_view::addToView(aula* b) {
     table->setCellWidget(table->rowCount()-2,3,new QLabel(QString::number(a->getMaxPersone()),this));
     table->setCellWidget(table->rowCount()-2,4,new QLabel(QString::fromStdString(a->getStrumento()),this));
 
-    QPushButton* remove=new QPushButton("-",this);
+    QPixmap pixmap(":/Images/delete.svg");
+    QPushButton *remove = new QPushButton(this);
+    remove->setIcon(QIcon(pixmap));
     table->setCellWidget(table->rowCount()-2,5,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = table->indexAt(remove->pos()).row();
-        emit rimuovi_signal_str(riga);
+        emit rimuovi_aula(riga);
     });
 }
+
+void aulaStrumentale_view::aggiungi_slot(){
+    int piano = (_piano->text()).toInt();
+    int numero = (_numero->text()).toInt();
+    QString sede = _sede->text();
+    int pers = (_pers->text()).toInt();
+    QString strum = _strumento->text();
+
+    //controllo errori basilari
+    if(piano==NULL || numero==NULL || sede.isEmpty() || pers==NULL ||  strum.isEmpty()){
+        static_cast<View*>(this)->showError("Inserimento non valido", "I valori inseriti non sono accettati");
+    }
+    else{
+        emit aggiungi_signal_str(piano, numero, sede, pers, strum);
+    }
+}
+
 void aulaStrumentale_view::rimuovi_aula(uint i){
-    table->removeRow(i);
     emit rimuovi_signal_strumentale(i);
+}
+
+void aulaStrumentale_view::chiudi(uint a){
+    table->removeRow(a);
 }
 
 void aulaStrumentale_view::closeEvent(QCloseEvent *event) {
