@@ -1,3 +1,2 @@
-def.pro.user
-PlannerVi.pro.user
-build-def-Desktop-Debug
+*.user
+build-def-Desktop-Debug/
