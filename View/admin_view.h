@@ -3,7 +3,6 @@
 
 #include "view.h"
 #include "Model/storage.h"
-#include "WidgetLookup.h"
 #include "View/aulastudio_view.h"
 #include "View/aulastrumentale_view.h"
 #include "View/aulaconcerto_view.h"
