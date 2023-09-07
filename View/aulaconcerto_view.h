@@ -43,10 +43,7 @@ public:
 public slots:
     void aggiungi_slot();
 
-signals:
-    void viewClosed() const; //close_signal to controller
-    void aggiungi_signal_c(const int&, const int&, const QString&, const int&, const QString&,const QString&, const int&, const bool&);
-    void rimuovi_signal_concerto(uint) const;
+    
 };
 
 #endif // AULACONCERTO_VIEW_H

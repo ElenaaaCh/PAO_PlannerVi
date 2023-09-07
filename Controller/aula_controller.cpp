@@ -69,5 +69,5 @@ void aula_controller::onViewClosed() const {
         hide();
         static_cast<View*>(view->parent())->show();
     }
-    delete this;
+    //delete this;
 }

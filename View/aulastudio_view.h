@@ -40,11 +40,7 @@ public:
 
 public slots:
     void aggiungi_slot();
-
-signals:
-    void viewClosed() const; //close_signal to controller
-    void rimuovi_signal_studio(uint) const;
-    void aggiungi_signal_s(const int&, const int&, const QString&, const int&, const int&, const int&);
+    
 };
 
 #endif // AULASTUDIO_VIEW_H

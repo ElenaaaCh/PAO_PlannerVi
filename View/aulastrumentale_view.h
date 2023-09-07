@@ -39,10 +39,6 @@ public:
 public slots:
     void aggiungi_slot();
 
-signals:
-    void viewClosed() const; //close_signal to controller
-    void rimuovi_signal_strumentale(uint) const;
-    void aggiungi_signal_str(const int&, const int&, const QString&, const int&, const QString&);
 
 };
 
