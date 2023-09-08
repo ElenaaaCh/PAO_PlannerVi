@@ -48,6 +48,7 @@ void PrenController::aggiungi_enter(const int& _aula, const QDate& data, const Q
 
 void PrenController::rimuovi_enter(uint i){
     getModel()->removePrenotazione(i);
+    getView()->chiudi(i);
 }
 
 void PrenController::indietro_enter() {

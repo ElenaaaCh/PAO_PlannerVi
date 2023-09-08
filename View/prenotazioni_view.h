@@ -44,12 +44,12 @@ public:
     void create_table(const QStringList&);
     void carica_pren(const contenitore<prenotazione*>& );
     void addToView(prenotazione*);
+    void chiudi(uint);
 
 public slots:
     void aggiungi_pren();
 
 signals:
-    void ButtonClicked() const;
     void indietro_signal() const;
     void aggiungi_signal(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&);
     void rimuovi_signal(uint);

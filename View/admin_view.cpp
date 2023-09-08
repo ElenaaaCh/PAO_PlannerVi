@@ -65,7 +65,7 @@ void  admin_view::slot3() const{
 }
 
 void admin_view::closeEvent(QCloseEvent *event){
-    if(QMessageBox::question(this,"Uscita","Vuoi uscire davvero?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
+    if(QMessageBox::question(this,"Uscita","Vuoi effettuare il LOGOUT?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
         event->accept();
         emit viewClosed();
     }

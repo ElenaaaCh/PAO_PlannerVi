@@ -51,6 +51,8 @@ admin_view* AdminController::getView() const{
 }
 
 void AdminController::onViewClosed() const {
+    static_cast<const LoginController*>(this->parent())->show();
+    this->hide();
     delete this;
 }
 

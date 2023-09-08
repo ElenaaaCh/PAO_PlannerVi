@@ -2,6 +2,7 @@
 #define ADMIN_CONTROLLER_H
 
 #include "controller.h"
+#include "login_controller.h"
 #include "View/admin_view.h"
 #include "View/aula_view.h"
 #include "aula_controller.h"

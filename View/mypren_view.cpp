@@ -63,6 +63,7 @@ void myPren_view::carica_pren(const contenitore<prenotazione*>& pren){
     }
 
     pren_table->insertRow(i);
+
     _aula = new QLineEdit(this);
     validator = new QRegularExpressionValidator(QRegularExpression("[0-9]+"), _aula);
     _aula->setValidator(validator);
@@ -92,8 +93,7 @@ void myPren_view::carica_pren(const contenitore<prenotazione*>& pren){
     pren_table->resizeColumnsToContents();
 
     // Connessione del pulsante di login allo slot onLoginButtonClicked()
-    connect(aggiungi, SIGNAL(clicked()), this, SIGNAL (ButtonClicked()));
-    connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_pren()));
+    connect(aggiungi, SIGNAL(clicked()), this, SLOT(aggiungi_pren()));
 }
 
 void myPren_view::addToView(prenotazione* pr){
@@ -133,8 +133,11 @@ void myPren_view::aggiungi_pren(){
     }
 }
 void myPren_view::rimuovi_prenotazione(uint i){
-    pren_table->removeRow(i);
-    emit elimina_signal(i);
+    emit rimuovi_signal(i);
+}
+
+void myPren_view::chiudi(uint a){
+    pren_table->removeRow(a);
 }
 
 void myPren_view::closeEvent(QCloseEvent *event){

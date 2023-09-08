@@ -36,6 +36,7 @@ private:
 
 protected:
     explicit myPren_view();
+
 public:
     explicit myPren_view(const QSize& s, const QString& m, View *parent = nullptr);
     void closeEvent(QCloseEvent *event) override;
@@ -45,16 +46,15 @@ public:
     void carica_pren(const contenitore<prenotazione*>& );
     void addToView(prenotazione*);
     void rimuovi_prenotazione(uint);
+    void chiudi(uint a);
 
 public slots:
     void aggiungi_pren();
 
 signals:
-    void ButtonClicked() const;
     void indietro_signal() const;
     void aggiungi_signal(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&);
     void rimuovi_signal(uint);
-    void elimina_signal(uint);
 };
 
 #endif // MYPREN_VIEW_H

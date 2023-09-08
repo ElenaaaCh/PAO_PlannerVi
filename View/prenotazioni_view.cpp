@@ -81,8 +81,7 @@ void prenotazioni_view::carica_pren(const contenitore<prenotazione*>& pren){
     pren_table->resizeColumnsToContents();
 
     // Connessione del pulsante di login allo slot onLoginButtonClicked()
-    connect(aggiungi, SIGNAL(clicked()), this, SIGNAL (ButtonClicked()));
-    connect(this,SIGNAL(ButtonClicked()),this,SLOT(aggiungi_pren()));
+    connect(aggiungi, SIGNAL(clicked()), this, SLOT(aggiungi_pren()));
 }
 
 void prenotazioni_view::addToView(prenotazione* pr){
@@ -120,6 +119,10 @@ void prenotazioni_view::aggiungi_pren(){
     else{
         emit aggiungi_signal(aula, data, oraArrivo, oraUscita, causale, mail);
     }
+}
+
+void prenotazioni_view::chiudi(uint a){
+    pren_table->removeRow(a);
 }
 
 void prenotazioni_view::closeEvent(QCloseEvent *event){
