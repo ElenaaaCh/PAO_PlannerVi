@@ -14,6 +14,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QRegularExpressionValidator>
+#include <QPixmap>
 
 class myPren_view : public View{
     Q_OBJECT

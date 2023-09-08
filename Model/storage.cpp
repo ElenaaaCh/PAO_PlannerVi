@@ -13,6 +13,7 @@ storage::storage(QJsonDocument* document, const string& path ): aule_concerto(co
     filepath=path;
     QJsonObject JObject = document->object();
 
+    //CARICAMENTO DATI DAL FILE JSON ALL'APPLICAZIONE ATTUALE
     QJsonArray JArray_aC = JObject["aule_concerto"].toArray();
         for (auto i: JArray_aC){
             aulaConcerto* au= new aulaConcerto(i.toObject().value("Piano").toInt(),
@@ -35,7 +36,7 @@ storage::storage(QJsonDocument* document, const string& path ): aule_concerto(co
                                                 i.toObject().value("Prese").toInt());
             aule_studio.push(au);
         }
-        QJsonArray JArray_aStr = JObject["aule_strumentale"].toArray();
+        QJsonArray JArray_aStr = JObject["aule_strumentali"].toArray();
         for (auto i: JArray_aStr){
             aulaStrumentale* au= new aulaStrumentale(i.toObject().value("Piano").toInt(),
                                                 i.toObject().value("Numero").toInt(),
@@ -85,8 +86,6 @@ const vector<utente*>& storage::getUtente() const{
     return pers;
 }
 
-
-
 storage::~storage() {
     // Dealloca le aule nel contenitore delle aule
     for (auto aula1 : aule_concerto) {
@@ -102,12 +101,23 @@ storage::~storage() {
     for (auto prenotazione : prenotazioni) {
         delete prenotazione;
     }
-
     // Dealloca gli utenti nel vettore degli utenti
     for (auto utente : pers) {
         delete utente;
     }
-    //saveJsonData();
+}
+
+//METODI DI AGGIUNTA
+void storage::addAula_Concerto(aulaConcerto* a){
+    aule_concerto.insertSorted(a, [](const aula* a1, const aula* a2) {
+        if (a1->getPiano() < a2->getPiano()) {
+            return true;
+        } else if (a1->getPiano() == a2->getPiano()) {
+            return a1->getNumero() < a2->getNumero();
+        } else {
+            return false;
+        }
+    });
 }
 
 void storage::addAula_Strumentale(aulaStrumentale* a) {
@@ -121,6 +131,7 @@ void storage::addAula_Strumentale(aulaStrumentale* a) {
         }
     });
 }
+
 void storage::addAula_Studio(aulaStudio* a){
     aule_studio.insertSorted(a, [](const aula* a1, const aula* a2) {
         if (a1->getPiano() < a2->getPiano()) {
@@ -132,70 +143,38 @@ void storage::addAula_Studio(aulaStudio* a){
         }
     });
 }
-void storage::addAula_Concerto(aulaConcerto* a){
-    aule_concerto.insertSorted(a, [](const aula* a1, const aula* a2) {
-        if (a1->getPiano() < a2->getPiano()) {
-            return true;
-        } else if (a1->getPiano() == a2->getPiano()) {
-            return a1->getNumero() < a2->getNumero();
-        } else {
-            return false;
-        }
-    });
-}
-void storage::removeAulaStrumentale(uint aulaToRemove) {
-    aule_strumentali.remove(aulaToRemove);
-}
-void storage::removeAulaStudio(uint aulaToRemove) {
-    aule_studio.remove(aulaToRemove);
-}
-void storage::removeAulaConcerto(uint aulaToRemove) {
-    aule_concerto.remove(aulaToRemove);
-}
+
 void storage::addPrenotazione(prenotazione* pr) {
     prenotazioni.insertSorted(pr, [](const prenotazione* a, const prenotazione* b) {
         return a->getData() < b->getData() && a->getAula() < b->getAula() && a->getOraArrivo() < b->getOraArrivo();
     });
-
-    addPrenotazioneToJSON(pr);
-}
-
-void storage::removePrenotazione(uint i) {
-    prenotazioni.remove(i);
-    removePrenotazioneFromJSON(i);
 }
 
 void storage::addUtente(utente* ut){
     pers.push_back(ut);
 }
 
-void storage::addPrenotazioneToJSON(prenotazione* pr){
-    QJsonObject nuovaPrenotazione;
-    nuovaPrenotazione["Persona"] = QString::fromStdString(pr->getPersona());
-    nuovaPrenotazione["Data"] = pr->getData().toString("dd/MM/yyyy");
-    nuovaPrenotazione["OraArrivo"] = pr->getOraArrivo().toString("hh:mm");
-    nuovaPrenotazione["OraUscita"] = pr->getOraUscita().toString("hh:mm");
-    nuovaPrenotazione["Causale"] = QString::fromStdString(pr->getCausale());
-    nuovaPrenotazione["Aula"] = pr->getAula();
-
-    QJsonArray prenotazioniArray = jsonDocument->object()["prenotazioni"].toArray();
-    prenotazioniArray.append(nuovaPrenotazione);
-    jsonDocument->object()["prenotazioni"] = prenotazioniArray;
-
-    //saveJsonData();
+//METODI DI RIMOZIONE
+void storage::removeAulaStrumentale(uint aulaToRemove) {
+    aule_strumentali.remove(aulaToRemove);
 }
 
-void storage::removePrenotazioneFromJSON(uint i) {
-    QJsonArray prenotazioniArray = jsonDocument->object()["prenotazioni"].toArray();
-    prenotazioniArray.removeAt(i);
-    jsonDocument->object()["prenotazioni"] = prenotazioniArray;
+void storage::removeAulaStudio(uint aulaToRemove) {
+    aule_studio.remove(aulaToRemove);
+}
 
-    //saveJsonData();
+void storage::removeAulaConcerto(uint aulaToRemove) {
+    aule_concerto.remove(aulaToRemove);
 }
-/*
-void storage::saveJsonData() const {
-    QFile file(":/file.json");
-    file.write(jsonDocument->toJson());
-    file.close();
+
+void storage::removePrenotazione(uint i) {
+    prenotazioni.remove(i);
 }
-*/
+
+const string& storage::getPath() const{
+    return filepath;
+}
+
+void storage::setPath(const QString& s){
+    filepath=s.toStdString();
+}

@@ -2,7 +2,6 @@
 
 admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayout(new QGridLayout(this)){
     mainLayout->setSpacing(5);
-
     hbox = new QHBoxLayout(this);
 
     QFont font;
@@ -14,7 +13,7 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     benvenuto->setFont(font);
     hbox->addWidget(benvenuto);
     hbox->addStretch();
-    saveButton = new QPushButton("Save",this);
+    saveButton = new QPushButton("SALVA MODIFICHE",this);
     hbox->addWidget(saveButton);
 
     mainLayout->addLayout(hbox,0,1,Qt::AlignJustify);
@@ -49,6 +48,7 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     connect(concertoButton,SIGNAL(clicked(bool)),this,SLOT(slot1()));
     connect(strumButton,SIGNAL(clicked(bool)),this,SLOT(slot2()));
     connect(studioButton,SIGNAL(clicked(bool)),this,SLOT(slot3()));
+    connect(saveButton,SIGNAL(clicked(bool)),this,SIGNAL(salva_signal()));
 
     //implementazione
     setLayout(mainLayout);

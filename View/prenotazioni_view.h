@@ -13,6 +13,7 @@
 #include <QDateEdit>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QPixmap>
 #include <QRegularExpressionValidator>
 
 class prenotazioni_view : public View{

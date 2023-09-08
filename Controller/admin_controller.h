@@ -4,8 +4,8 @@
 #include "controller.h"
 #include "View/admin_view.h"
 #include "View/aula_view.h"
-//#include "View/aulaconcerto_view.h"
 #include "aula_controller.h"
+#include "salvataggio_dati.h"
 #include "Model/storage.h"
 #include <QFile>
 #include <QDebug>
@@ -25,7 +25,7 @@ public slots:
     void concerto_enter() const;
     void str_enter() const;
     void studio_enter() const;
-
+    void addToJson() const;
 };
 
 #endif // ADMIN_CONTROLLER_H

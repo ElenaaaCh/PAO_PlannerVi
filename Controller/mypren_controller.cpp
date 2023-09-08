@@ -22,7 +22,7 @@ myPren_view* MyPrenController::getView() const{
 
 void MyPrenController::aggiungi_enter(const int& _aula, const QDate& data, const QTime& oraArrivo, const QTime& oraUscita, const QString& causale, const QString& mail) const {
     string _causale=causale.toStdString();
-    string _mail=mail.toStdString();
+    //string _mail=mail.toStdString();
     string ut;
     int au;
     for(auto i : getModel()->getContPren()){
@@ -37,7 +37,7 @@ void MyPrenController::aggiungi_enter(const int& _aula, const QDate& data, const
         ut=i->getPersona();
         au=i->getAula();
     }
-    prenotazione* nuova = new prenotazione(ut,data,oraArrivo,oraUscita,causale.toStdString(),_aula);
+    prenotazione* nuova = new prenotazione(ut,data,oraArrivo,oraUscita,_causale,_aula);
     getModel()->addPrenotazione(nuova);
     getView()->addToView(nuova);
 }
@@ -54,4 +54,3 @@ void MyPrenController::indietro_enter() {
 void MyPrenController::onViewClosed() const {
     delete this;
 }
-

@@ -21,7 +21,6 @@
 using std::string;
 using std::vector;
 
-
 class storage: public Model{
 private:
     contenitore<aula*> aule_concerto;
@@ -31,6 +30,7 @@ private:
     vector<utente*> pers;
     QJsonDocument* jsonDocument;
     string filepath;
+
 public:
     explicit storage();
     explicit storage(contenitore<aula*>& , contenitore<aula*>& , contenitore<aula*>& , contenitore<prenotazione*>& , vector<utente*>& );//costr
@@ -43,25 +43,26 @@ public:
     const contenitore<prenotazione*>& getContPren() const;
     const vector<utente*>& getUtente() const;
 
+    //METODI DI AGGIUNTA
+    void addAula_Concerto(aulaConcerto*);
     void addAula_Strumentale(aulaStrumentale*);
     void addAula_Studio(aulaStudio*);
-    void addAula_Concerto(aulaConcerto*);
-    void removeAulaConcerto(uint);
-    void removeAulaStudio(uint);
-    void removeAulaStrumentale(uint);
-    aula* searchAula(const int piano, const int numero);
-
     void addPrenotazione(prenotazione* pr);
-    void removePrenotazione(uint i);
-    prenotazione* searchPrenotazione(const QDate& data, const aula* aulaRiferimento);
-
     void addUtente(utente* ut);
-    void removeUtente(const string& nome, const string& cognome);
-    void modifyUtente(const string& nome, const string& cognome, const string& nuovoTelefono, const string& nuovaEmail);
 
-    void addPrenotazioneToJSON(prenotazione* pr);
-    void removePrenotazioneFromJSON(uint i);
-    //void saveJsonData() const;
+    //METODI DI RIMOZIONE
+    void removeAulaConcerto(uint);
+    void removeAulaStrumentale(uint);
+    void removeAulaStudio(uint);
+    void removePrenotazione(uint i);
+    void removeUtente(const string& nome, const string& cognome);
+
+    const string& getPath() const;
+    void setPath(const QString&);
+    //aula* searchAula(const int piano, const int numero);
+    //prenotazione* searchPrenotazione(const QDate& data, const aula* aulaRiferimento);
+    //void modifyUtente(const string& nome, const string& cognome, const string& nuovoTelefono, const string& nuovaEmail);
+
 };
 
 

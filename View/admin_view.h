@@ -39,6 +39,7 @@ signals:
     void View_str_signal() const;
     void View_studio_signal() const;
     void viewClosed() const;
+    void salva_signal() const;
 
 public slots:
     void slot1() const;

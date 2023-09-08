@@ -27,7 +27,6 @@ public:
     void setSede(const string &value);
     void setMaxPersone(int value);
 
-
 };
 
 #endif // AULA_H

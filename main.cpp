@@ -13,10 +13,6 @@
 #include "Controller/profilo_controller.h"
 #include "Controller/prenotazioni_controller.h"
 
-/*#include "View/aulastudio_view.h"
-#include "View/aulaconcerto_view.h"
-#include "View/aula_view.h"
-*/
 
 int main(int argc, char *argv[])
 {
@@ -24,30 +20,22 @@ int main(int argc, char *argv[])
     a.setWindowIcon(QIcon("logo.ico"));
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps); 
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
-
-
     QString filename=salvataggio_dati::JsonSelect();
 
+    //SELEZIONE FILE JSON
     QJsonDocument* document = salvataggio_dati::getFileJson(filename);
-    //if (document->isNull()){
-    //    QMessageBox::warning(nullptr,"ERRORE","Errore File Json",QMessageBox::Yes);
-    //    QApplication::quit();
-    //    return 0;
-  //  }
 
+    //CREAZIONE STORAGE
     storage* st=new storage(document, filename.toStdString());
 
-    admin_view* aW = new admin_view (QSize(300,400),nullptr);
-    AdminController* aC= new AdminController (st, aW, nullptr);
-    aC->show();
+    //INIZIO VISUALIZZAZIONE
+    login_view* login = new login_view(QSize(500,300),nullptr);
+    LoginController* log_controller= new LoginController (st, login);
+    log_controller->show();
 
-   // login_view* login = new login_view(QSize(500,300),nullptr);
-  //  LoginController* log_controller= new LoginController (st, login);
-  //  log_controller->show();
-
+    //USABILI PER I TEST
     /*
-    admin_view* aW = new admin_view (QSize(900,600),nullptr);
+    admin_view* aW = new admin_view (QSize(300,400),nullptr);
     AdminController* aC= new AdminController (st, aW, nullptr);
     aC->show();
 
@@ -71,7 +59,6 @@ int main(int argc, char *argv[])
     PrenController* pC= new PrenController (st, pW, nullptr);
     pC->show();
 */
-
 
     return QApplication::exec();
 }

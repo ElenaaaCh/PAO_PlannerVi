@@ -74,7 +74,9 @@ void prenotazioni_view::carica_pren(const contenitore<prenotazione*>& pren){
     _mail = new QLabel(this->getMail(), this);
     pren_table->setCellWidget(i,5,_mail);
 
-    aggiungi = new QPushButton ("+", this);
+    QPixmap pixmapA(":/Images/add.svg");
+    aggiungi = new QPushButton(this);
+    aggiungi->setIcon(QIcon(pixmapA));
     pren_table->setCellWidget(i,6,aggiungi);
     pren_table->resizeColumnsToContents();
 
@@ -91,7 +93,11 @@ void prenotazioni_view::addToView(prenotazione* pr){
     pren_table->setCellWidget(pren_table->rowCount()-2,3,new QLabel(pr->getOraUscita().toString("hh-mm"),this));
     pren_table->setCellWidget(pren_table->rowCount()-2,4,new QLabel(QString::fromStdString(pr->getCausale()),this));
     pren_table->setCellWidget(pren_table->rowCount()-2,5,new QLabel(QString::fromStdString(pr->getPersona()),this));
-    QPushButton* remove=new QPushButton("-",this);
+    QPushButton* vuoto = new QPushButton(this);
+    pren_table->setCellWidget(pren_table->rowCount()-2,6,vuoto);
+    QPixmap pixmap(":/Images/delete.svg");
+    QPushButton *remove = new QPushButton(this);
+    remove->setIcon(QIcon(pixmap));
     pren_table->setCellWidget(pren_table->rowCount()-2,7,remove);
     connect(remove, &QPushButton::clicked,[this,remove](){
         unsigned int riga = pren_table->indexAt(remove->pos()).row();

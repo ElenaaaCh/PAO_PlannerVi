@@ -12,8 +12,6 @@ using std::string;
 class View:public QWidget //classe base polimorfa, è la base delle altre schermate
 {
     Q_OBJECT
-private:
-   // virtual void connectViewSignals() const = 0;
 protected:
     //costr protected ->non usabili all'esterno
     explicit View(const QSize&, View* =nullptr);
