@@ -2,6 +2,7 @@
 #define MENU_CONTROLLER_H
 
 #include "controller.h"
+#include "login_controller.h"
 #include "View/menu_view.h"
 #include "Controller/profilo_controller.h"
 #include "Controller/mypren_controller.h"

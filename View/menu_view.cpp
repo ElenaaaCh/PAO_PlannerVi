@@ -47,7 +47,7 @@ void  menu_view::p3() const{
     emit View_tutte_signal(this->getMail());
 }
 void menu_view::closeEvent(QCloseEvent *event){
-    if(QMessageBox::question(this,"Uscita","Vuoi uscire davvero?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
+    if(QMessageBox::question(this,"Uscita","Vuoi effettuare il LOGOUT ?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
         event->accept();
         emit viewClosed();
     }

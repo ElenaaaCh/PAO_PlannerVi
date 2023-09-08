@@ -46,7 +46,9 @@ void MenuController::Pren_enter(const QString& mail) const {
 }
 
 void MenuController::onViewClosed() const {
-    delete this;
+    static_cast<const LoginController*>(this->parent())->show();
+    this->hide();
+    //delete this;
 }
 
 void MenuController::salvataggio() const {
@@ -55,19 +57,9 @@ void MenuController::salvataggio() const {
     }
     QJsonDocument* document = new QJsonDocument();
     QJsonObject cartella;
-    //QJsonArray archivio_aule;
     QJsonArray archivio_pren;
     QJsonArray archivio_ut;
 
-    /*for(auto i: getModel()->getContAula()){
-        QJsonObject record;
-        record.insert(QString::fromStdString("Piano"),i->getPiano());
-        record.insert(QString::fromStdString("Numero"),i->getNumero());
-        record.insert(QString::fromStdString("Sede"),QString::fromStdString(i->getSede()));
-        record.insert(QString::fromStdString("MaxPersone"),i->getMaxPersone());
-        archivio_aule.push_back(record);
-    }
-*/
     for(auto i: getModel()->getContPren()){
         QJsonObject record1;
         record1.insert(QString::fromStdString("Persona"),QString::fromStdString(i->getPersona()));

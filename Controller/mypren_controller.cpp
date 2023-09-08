@@ -8,7 +8,7 @@ MyPrenController::MyPrenController(storage* s, myPren_view * a, Controller* c) :
     getView()->carica_pren(s->getContPren());
 
     connect(view,SIGNAL(rimuovi_signal(uint)),this,SLOT(rimuovi_enter(uint)));
-    connect(view,SIGNAL(aggiugi_signal(const int, const QDate, const QTime, const QTime, const QString, const QString)),this,SLOT(aggiungi_enter(aula, data, oraArrivo, oraUscita, causale, mail)));
+    connect(view,SIGNAL(aggiugi_signal(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&)),this,SLOT(aggiungi_enter(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&)));
     connect(view,SIGNAL(indietro_signal()),this,SLOT(indietro_enter()));
 }
 
@@ -38,11 +38,11 @@ void MyPrenController::aggiungi_enter(const int& _aula, const QDate& data, const
         au=i->getAula();
 
         //PROVA DI CONTROLLO DELL'ESISTENZA DEL NUMERO DELL'AULA
-        bool trovato=false;
+        /*bool trovato=false;
             for(auto j: getModel()->getContAula1()){
             if(j->getNumero==au)
                 trovato=true;
-        }
+        }*/
     }
     prenotazione* nuova = new prenotazione(ut,data,oraArrivo,oraUscita,_causale,_aula);
     getModel()->addPrenotazione(nuova);
