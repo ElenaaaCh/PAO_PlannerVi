@@ -49,8 +49,10 @@ void myPren_view::carica_pren(const contenitore<prenotazione*>& pren){
         pren_table->setCellWidget(i, 6, rimuovi);
         connect (rimuovi, &QPushButton::clicked,[this, rimuovi](){
             unsigned int riga = pren_table->indexAt(rimuovi->pos()).row();
-            emit rimuovi_prenotazione(riga);
+            rimuovi_prenotazione(riga);
         });
+        QPushButton* vuoto = new QPushButton(this);
+        pren_table->setCellWidget(i,7,vuoto);
         i++;
         }
     }
@@ -114,6 +116,8 @@ void myPren_view::addToView(prenotazione* pr){
         emit rimuovi_signal(riga);
     });
 
+    QPushButton* vuoto = new QPushButton(this);
+    pren_table->setCellWidget(pren_table->rowCount()-2,7,vuoto);
 }
 
 void myPren_view::aggiungi_pren(){

@@ -41,7 +41,8 @@ void aulaStrumentale_view::carica_view(const contenitore<aula*>& au){
             unsigned int riga = table->indexAt(rimuovi->pos()).row();
             rimuovi_aula(riga);
         });
-
+        QPushButton* vuoto = new QPushButton(this);
+        table->setCellWidget(i,9,vuoto);
         i++;
     }
 
@@ -97,6 +98,8 @@ void aulaStrumentale_view::addToView(aula* b) {
         unsigned int riga = table->indexAt(remove->pos()).row();
         emit rimuovi_aula(riga);
     });
+    QPushButton* vuoto = new QPushButton(this);
+    table->setCellWidget(table->rowCount()-2,6,vuoto);
 }
 
 void aulaStrumentale_view::aggiungi_slot(){

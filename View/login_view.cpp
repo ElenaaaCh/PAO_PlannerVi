@@ -6,7 +6,7 @@ login_view::login_view(const QSize& s, View* parent) : View(s, parent) {
     layout = new QVBoxLayout(this);
 
     // Aggiungi il logo
-    QPixmap logoPixmap(":/Images/consvi.svg");
+    QPixmap logoPixmap(":/Images/consvi.png");
     logoLabel = new QLabel(this);
     logoLabel->setPixmap(logoPixmap.scaledToHeight(150));
     logoLabel->setAlignment(Qt::AlignHCenter);
@@ -55,10 +55,13 @@ login_view::login_view(const QSize& s, View* parent) : View(s, parent) {
     // Aggiungi pulsante di login
     loginButton = new QPushButton("Login", this);
     layout->addWidget(loginButton);
+    // Scorciatoia da tastiera per il pulsante INVIO
+    QShortcut *shortcut = new QShortcut(QKeySequence(Qt::Key_Return),this);
 
     // Connessione del pulsante di login allo slot onLoginButtonClicked()
     connect(loginButton,SIGNAL(clicked(bool)),this,SIGNAL(ButtonClicked()));
     connect(this,SIGNAL(ButtonClicked()),this,SLOT(onLoginButtonClicked()));
+    connect(shortcut, SIGNAL(activated()),this,SLOT(onLoginButtonClicked()));
 
     // Aggiungi link per la registrazione
     registerLabel = new QLabel(this);

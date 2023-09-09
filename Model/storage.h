@@ -59,11 +59,7 @@ public:
 
     const string& getPath() const;
     void setPath(const QString&);
-    //aula* searchAula(const int piano, const int numero);
-    //prenotazione* searchPrenotazione(const QDate& data, const aula* aulaRiferimento);
-    //void modifyUtente(const string& nome, const string& cognome, const string& nuovoTelefono, const string& nuovaEmail);
-
-};
+ };
 
 
 #endif // STORAGE_H

@@ -8,15 +8,17 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     font.setBold(true);
     font.setPointSize(14);
 
-    benvenuto = new QLabel("Gestione Aule", this);
-    benvenuto->setAlignment(Qt::AlignCenter);
-    benvenuto->setFont(font);
-    hbox->addWidget(benvenuto);
-    hbox->addStretch();
-    saveButton = new QPushButton("SALVA MODIFICHE",this);
-    hbox->addWidget(saveButton);
+    QFont font2;
+    font.setBold(true);
+    font.setPointSize(12);
 
-    mainLayout->addLayout(hbox,0,1,Qt::AlignJustify);
+    benvenuto = new QLabel("Gestione Aule", this);
+    benvenuto->setFont(font);
+    mainLayout->addWidget(benvenuto,0,1,Qt::AlignCenter);
+
+    saveButton = new QPushButton("SALVA MODIFICHE su file",this);
+    saveButton->setFont(font2);
+    mainLayout->addWidget(saveButton,0,2,Qt::AlignCenter);
 
     QPixmap concertoPixmap(":/Images/aula_c.png");
     QLabel* imgLabel1 = new QLabel(this);
@@ -24,8 +26,10 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     imgLabel1->setAlignment(Qt::AlignHCenter);
     mainLayout->addWidget(imgLabel1,1,1,Qt::AlignLeft);
 
+    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     concertoButton = new QPushButton("AULE CONCERTO", this);
-    mainLayout->addWidget(concertoButton, 1,2, Qt::AlignLeft);
+    concertoButton->setSizePolicy(sizePolicy);
+    mainLayout->addWidget(concertoButton, 1,2, Qt::AlignCenter);
 
     QPixmap strPixmap(":/Images/aula_str.png");
     QLabel* imgLabel2 = new QLabel(this);
@@ -34,7 +38,8 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     mainLayout->addWidget(imgLabel2,2,1,Qt::AlignLeft);
 
     strumButton = new QPushButton("AULE STRUMENTALI", this);
-    mainLayout->addWidget(strumButton, 2,2, Qt::AlignLeft);
+    strumButton->setSizePolicy(sizePolicy);
+    mainLayout->addWidget(strumButton, 2,2, Qt::AlignCenter);
 
     QPixmap studioPixmap(":/Images/aula_studio.png");
     QLabel* imgLabel3 = new QLabel(this);
@@ -43,7 +48,8 @@ admin_view::admin_view(const QSize& s, View* parent) : View(s,parent), mainLayou
     mainLayout->addWidget(imgLabel3,3,1,Qt::AlignLeft);
 
     studioButton = new QPushButton("AULE STUDIO", this);
-    mainLayout->addWidget(studioButton, 3,2, Qt::AlignLeft);
+    studioButton->setSizePolicy(sizePolicy);
+    mainLayout->addWidget(studioButton, 3,2, Qt::AlignCenter);
 
     connect(concertoButton,SIGNAL(clicked(bool)),this,SLOT(slot1()));
     connect(strumButton,SIGNAL(clicked(bool)),this,SLOT(slot2()));
@@ -65,7 +71,7 @@ void  admin_view::slot3() const{
 }
 
 void admin_view::closeEvent(QCloseEvent *event){
-    if(QMessageBox::question(this,"Uscita","Vuoi effettuare il LOGOUT?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
+    if(QMessageBox::question(this,"Uscita","Vuoi effettuare il LOGOUT e uscire?",QMessageBox::Yes|QMessageBox::No)==QMessageBox::Yes){
         event->accept();
         emit viewClosed();
     }

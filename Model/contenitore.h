@@ -71,7 +71,6 @@ public:
     void replace(int _pos, const T&);
     void insertSorted(const T& item, std::function<bool(const T&, const T&)> compare);
 
-
     iteratore begin();
     iteratore end();
     iteratore_const begin()const;

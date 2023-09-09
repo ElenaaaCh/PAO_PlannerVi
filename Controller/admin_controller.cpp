@@ -51,8 +51,6 @@ admin_view* AdminController::getView() const{
 }
 
 void AdminController::onViewClosed() const {
-    static_cast<const LoginController*>(this->parent())->show();
-    this->hide();
     delete this;
 }
 
@@ -66,6 +64,7 @@ void AdminController::addToJson() const{
     QJsonArray arrayJson1;
     QJsonArray arrayJson2;
     QJsonArray arrayJson3;
+    QJsonArray arrayJson4;
 
     for(auto j: getModel()->getContAula1()){
         aulaConcerto* i=static_cast<aulaConcerto*>(j);
@@ -105,6 +104,20 @@ void AdminController::addToJson() const{
     container.insert(QString::fromStdString("aule_concerto"),arrayJson1);
     container.insert(QString::fromStdString("aule_strumentali"),arrayJson2);
     container.insert(QString::fromStdString("aule_studio"),arrayJson3);
+
+    for(auto i: getModel()->getUtente()){
+        QJsonObject obj;
+        obj.insert(QString::fromStdString("Nome"),QString::fromStdString(i->getNome()));
+        obj.insert(QString::fromStdString("Cognome"),QString::fromStdString(i->getCognome()));
+        obj.insert(QString::fromStdString("CodFiscale"), QString::fromStdString(i->getCodiceFiscale()));
+        obj.insert(QString::fromStdString("Telefono"),QString::fromStdString(i->getTelefono()));
+        obj.insert(QString::fromStdString("Email"),QString::fromStdString(i->getEmail()));
+        obj.insert(QString::fromStdString("Ruolo"),QString::fromStdString(i->getRuolo()));
+        obj.insert(QString::fromStdString("Password"),QString::fromStdString(i->getPassword()));
+        arrayJson4.push_back(obj);
+    }
+
+    container.insert(QString::fromStdString("utenti"),arrayJson4);
 
     docJson->setObject(container);
     QString nome = QFileDialog::getSaveFileName(view,QObject::tr("Salva con nome"), QString::fromStdString(getModel()->getPath()),"JSON Files (*.json)");

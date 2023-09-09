@@ -31,14 +31,70 @@
             "Amplificazione": true
         }
     ],
+    "aule_studio": [
+        {
+            "Piano": 2,
+            "Numero": 210,
+            "Sede": "Sede principale",
+            "Persone": 8,
+            "Leggii": 5,
+            "Prese": 3
+        },
+        {
+            "Piano": 2,
+            "Numero": 211,
+            "Sede": "Sede principale",
+            "Persone": 10,
+            "Leggii": 6,
+            "Prese": 3
+        },
+        {
+            "Piano": 2,
+            "Numero": 201,
+            "Sede": "Biblioteca del Conservatorio",
+            "Persone": 30,
+            "Leggii": 0,
+            "Prese": 30
+        }
+    ],
+    "aule_strumentali": [
+        {
+            "Piano": 1,
+            "Numero": 103,
+            "Sede": "Sede principale",
+            "Persone": 5,
+            "Strumento": "Liuti e tiorba"
+        },
+        {
+            "Piano": 1,
+            "Numero": 102,
+            "Sede": "Sede principale",
+            "Persone": 5,
+            "Strumento": "Clavicembalo"
+        },
+        {
+            "Piano": 1,
+            "Numero": 105,
+            "Sede": "Sede principale",
+            "Persone": 5,
+            "Strumento": "Arpa"
+        },
+        {
+            "Piano": 2,
+            "Numero": 205,
+            "Sede": "Sede principale",
+            "Persone": 5,
+            "Strumento": "Pianoforte"
+        }
+    ],
     "prenotazioni": [
         {
             "Persona": "anna.bach@consvi.it",
             "Data": "10/07/2023",
             "OraArrivo": "11:30",
             "OraUscita": "12:30",
-            "Causale": "Lezione di prassi",
-            "Aula": 113
+            "Causale": "Lezione di prassi arpistica",
+            "Aula": 105
         },
         {
             "Persona": "mario.rossi@consvi.it",
@@ -46,7 +102,7 @@
             "OraArrivo": "11:30",
             "OraUscita": "12:30",
             "Causale": "Studio al clavicembalo",
-            "Aula": 4 
+            "Aula": 102 
         },
         {
             "Persona": "maria.bianchi@consvi.it",
@@ -54,7 +110,7 @@
             "OraArrivo": "11:30",
             "OraUscita": "12:30",
             "Causale": "Tecniche di improvvisazione",
-            "Aula": 103
+            "Aula": 210
         }
     ],
     "utenti": [

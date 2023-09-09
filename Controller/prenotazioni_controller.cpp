@@ -6,7 +6,7 @@ PrenController::PrenController(storage* s, prenotazioni_view * p, Controller* c)
     view->setTitolo("SCHEDA PRENOTAZIONI");
     getView()->create_table({"Numero Aula","Data","Ora Arrivo", "Ora Uscita", "Causale", "Email utente", "Aggiungi"});
     getView()->carica_pren(s->getContPren());
-    connect(view,SIGNAL(aggiugi_signal(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&)),this,SLOT(aggiungi_enter(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&)));
+    connect(view,SIGNAL(aggiungi_signal(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&)),this,SLOT(aggiungi_enter(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&)));
     connect(view,SIGNAL(rimuovi_signal(uint)),this,SLOT(rimuovi_enter(uint)));
     connect(view,SIGNAL(indietro_signal()),this,SLOT(indietro_enter()));
 }
@@ -27,7 +27,6 @@ void PrenController::aggiungi_enter(const int& _aula, const QDate& data, const Q
     string _causale=causale.toStdString();
     string _mail=email.toStdString();
     string ut;
-    int au;
     for(auto i : getModel()->getContPren()){
         if(i->getAula() == _aula && i->getData()==data ){
             QTime arrivo= i->getOraArrivo();
@@ -38,12 +37,31 @@ void PrenController::aggiungi_enter(const int& _aula, const QDate& data, const Q
             return;
         }
         ut=i->getPersona();
-        au=i->getAula();
     }
-    //mettere in ordine
-    prenotazione* nuova = new prenotazione(ut,data,oraArrivo,oraUscita,causale.toStdString(),au);
-    getModel()->addPrenotazione(nuova);
-    getView()->addToView(nuova);
+
+    //CONTROLLO DELL'ESISTENZA DEL NUMERO DELL'AULA
+    bool trovato=false;
+    for(auto j: getModel()->getContAula1()){
+        if(j->getNumero()==_aula)
+            trovato=true;
+    }
+    for(auto j: getModel()->getContAula2()){
+        if(j->getNumero()==_aula)
+            trovato=true;
+    }
+    for(auto j: getModel()->getContAula3()){
+        if(j->getNumero()==_aula)
+            trovato=true;
+    }
+    if(trovato==false){
+        view->showError("Aula inesistente","Inserire il numero corretto dell'aula");
+        return;
+    }
+    else{
+        prenotazione* nuova = new prenotazione(_mail,data,oraArrivo,oraUscita,_causale,_aula);
+        getModel()->addPrenotazione(nuova);
+        getView()->addToView(nuova);
+    }
 }
 
 void PrenController::rimuovi_enter(uint i){

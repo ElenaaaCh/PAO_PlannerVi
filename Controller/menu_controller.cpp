@@ -46,9 +46,7 @@ void MenuController::Pren_enter(const QString& mail) const {
 }
 
 void MenuController::onViewClosed() const {
-    static_cast<const LoginController*>(this->parent())->show();
-    this->hide();
-    //delete this;
+    delete this;
 }
 
 void MenuController::salvataggio() const {

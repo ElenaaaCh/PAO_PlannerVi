@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>Images/consvi.svg</file>
+        <file>Images/consvi.png</file>
 	<file>Images/add.svg</file>
         <file>Images/delete.svg</file>
 	<file>Images/aula_str.png</file>

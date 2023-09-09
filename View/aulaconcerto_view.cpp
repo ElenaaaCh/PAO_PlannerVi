@@ -49,7 +49,8 @@ void aulaConcerto_view::carica_view(const contenitore<aula*>& au){
             unsigned int riga = table->indexAt(rimuovi->pos()).row();
             rimuovi_aula(riga);
         });
-
+        QPushButton* vuoto = new QPushButton(this);
+        table->setCellWidget(i,9,vuoto);
         i++;
     }
 
@@ -121,6 +122,8 @@ void aulaConcerto_view::addToView(aula* b) {
         unsigned int riga = table->indexAt(remove->pos()).row();
         rimuovi_aula(riga);
     });
+    QPushButton* vuoto = new QPushButton(this);
+    table->setCellWidget(table->rowCount()-2,9,vuoto);
 }
 void aulaConcerto_view::aggiungi_slot(){
     int piano = (_piano->text()).toInt();

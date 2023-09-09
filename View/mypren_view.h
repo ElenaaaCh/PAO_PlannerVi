@@ -53,8 +53,8 @@ public slots:
 
 signals:
     void indietro_signal() const;
-    void aggiungi_signal(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&);
-    void rimuovi_signal(uint);
+    void aggiungi_signal(const int&, const QDate&, const QTime&, const QTime&, const QString&, const QString&) const;
+    void rimuovi_signal(uint) const;
 };
 
 #endif // MYPREN_VIEW_H
